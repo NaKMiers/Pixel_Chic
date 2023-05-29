@@ -12,6 +12,7 @@ code {
 :root {
    --primary: #00bcd4;
    --secondary: #212331;
+   --common-background: #1c1d28;
 
    --standard-duration: 0.2s;
 }

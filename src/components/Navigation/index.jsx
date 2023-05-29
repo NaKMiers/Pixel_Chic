@@ -19,7 +19,27 @@ function Navigation() {
 
    const handleClickOutside = e => {
       if (headerNavRef.current && !headerNavRef.current.contains(e.target)) {
+         handleOpenNavHeader(false)
+      }
+   }
+
+   const handleOpenNavHeader = value => {
+      if (value && !openHeader) {
+         console.log('open')
+         setOpenHeader(true)
+         headerNavRef.current.style.display = 'flex'
+         setTimeout(() => {
+            headerNavRef.current.classList.add(styles.open)
+         }, 0)
+      }
+      if (!value && openHeader) {
+         console.log('close')
          setOpenHeader(false)
+         headerNavRef.current.classList.remove(styles.open)
+
+         setTimeout(() => {
+            headerNavRef.current.style.display = 'none'
+         }, 210) // navHeader duration: 0.2s(--standard-duration)
       }
    }
 
@@ -44,36 +64,42 @@ function Navigation() {
                   <NavLink
                      to='/'
                      className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}
+                     onClick={() => setOpenSidebar(false)}
                   >
                      Homepage
                   </NavLink>
                   <NavLink
                      to='/about-me'
                      className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}
+                     onClick={() => setOpenSidebar(false)}
                   >
                      About Me
                   </NavLink>
                   <NavLink
                      to='/portfolio'
                      className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}
+                     onClick={() => setOpenSidebar(false)}
                   >
                      Portfolio
                   </NavLink>
                   <NavLink
                      to='/services'
                      className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}
+                     onClick={() => setOpenSidebar(false)}
                   >
                      Services
                   </NavLink>
                   <NavLink
                      to='/blogs'
                      className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}
+                     onClick={() => setOpenSidebar(false)}
                   >
                      Blogs
                   </NavLink>
                   <NavLink
                      to='/hire-me'
                      className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}
+                     onClick={() => setOpenSidebar(false)}
                   >
                      Hire me
                   </NavLink>
@@ -111,6 +137,7 @@ function Navigation() {
             </div>
          </div>
 
+         {/* Header */}
          <header className={styles.header} onClick={handleClickOutside}>
             <div className={styles.headerLogo}>
                <img src={logo} alt='logo' />
@@ -121,7 +148,7 @@ function Navigation() {
                   className={`${styles.headerBtn}`}
                   onClick={e => {
                      e.stopPropagation()
-                     setOpenHeader(!openHeader)
+                     handleOpenNavHeader(!openHeader)
                   }}
                >
                   <div />
@@ -130,40 +157,48 @@ function Navigation() {
                </button>
             </div>
 
-            <div className={`${styles.headerNav} ${openHeader ? styles.open : ''}`} ref={headerNavRef}>
+            <div className={`${styles.headerNav}`} ref={headerNavRef}>
                <NavLink
                   to='/'
                   className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}
+                  onClick={() => {
+                     handleOpenNavHeader(false)
+                  }}
                >
                   Homepage
                </NavLink>
                <NavLink
                   to='/about-me'
                   className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}
+                  onClick={() => handleOpenNavHeader(false)}
                >
                   About Me
                </NavLink>
                <NavLink
                   to='/portfolio'
                   className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}
+                  onClick={() => handleOpenNavHeader(false)}
                >
                   Portfolio
                </NavLink>
                <NavLink
                   to='/services'
                   className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}
+                  onClick={() => handleOpenNavHeader(false)}
                >
                   Services
                </NavLink>
                <NavLink
                   to='/blogs'
                   className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}
+                  onClick={() => handleOpenNavHeader(false)}
                >
                   Blogs
                </NavLink>
                <NavLink
                   to='/hire-me'
                   className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}
+                  onClick={() => handleOpenNavHeader(false)}
                >
                   Hire me
                </NavLink>
