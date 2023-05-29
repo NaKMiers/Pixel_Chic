@@ -15,7 +15,7 @@ import NotFoundPage from './pages/NotFoundPage'
 
 function App() {
    return (
-      <div className={styles.App} style={{ height: '500vh' }}>
+      <div className={styles.App}>
          <Navigation />
 
          <Routes>

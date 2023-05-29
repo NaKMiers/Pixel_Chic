@@ -12,7 +12,7 @@
    background: var(--secondary);
    box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.1);
    cursor: pointer;
-   z-index: 2;
+   z-index: 1;
 
    // tablet
    @media (max-width: 768px) {
