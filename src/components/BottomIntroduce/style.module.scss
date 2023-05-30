@@ -3,10 +3,6 @@
 }
 
 .container {
-   max-width: 1212px;
-   width: 100%;
-   margin: 0 auto;
-
    display: flex;
    flex-wrap: wrap;
 
@@ -29,22 +25,9 @@
 }
 
 .title {
-   font-size: 24px;
-   font-weight: 200;
    letter-spacing: 0.04em;
-   line-height: 38px;
    margin: -9px 0 70px;
-   color: #fff;
    // background: #000;
-}
-
-.paragraph {
-   font-size: 16px;
-   font-family: 'Source Sans Pro', sans-serif;
-   line-height: 25px;
-   color: var(--text-secondary);
-   margin-bottom: 1.1rem;
-   // background: beige;
 }
 
 .signature {

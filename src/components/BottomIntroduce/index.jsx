@@ -46,7 +46,7 @@ function BottomIntroduce() {
 
    return (
       <section className={styles.BottomIntroduce}>
-         <div className={styles.container}>
+         <div className={`${styles.container} container`}>
             <div className={styles.part} ref={part1Ref}>
                <div className={styles.image}>
                   <img src={introduceImg2} alt='introduce' />
@@ -54,17 +54,17 @@ function BottomIntroduce() {
             </div>
 
             <div className={styles.part} ref={part2Ref}>
-               <h4 className={styles.title}>
+               <h4 className={`${styles.title} h4Title`}>
                   UT ENIM AD MINIM VENIAM, QUIS NOSTRUD. EXCEPTEUR SINT OCCAECAT CUPIDATAT NON PROIDENT.
                </h4>
 
-               <p className={styles.paragraph}>
+               <p className={`paragraph`}>
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                   incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
                   Excepteur sint occaecat cupidatat non proident, sunt in culpa.
                </p>
 
-               <p className={styles.paragraph}>
+               <p className={`paragraph`}>
                   Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
                   consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
                   quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed

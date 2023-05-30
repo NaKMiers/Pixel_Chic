@@ -1,0 +1,15 @@
+.PageHeading {
+   padding: 170px 0 80px;
+   overflow: hidden;
+   // background: green;
+}
+
+.container {
+   padding: 0 21px;
+   // background: #ccc;
+
+   & > h1 {
+      // background: blueviolet;
+      margin-bottom: 30px;
+   }
+}

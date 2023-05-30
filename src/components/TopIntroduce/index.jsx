@@ -45,15 +45,17 @@ function TopIntroduce() {
 
    return (
       <section className={styles.TopIntroduce}>
-         <div className={styles.container}>
+         <div className={`${styles.container} container`}>
             <div className={styles.part} ref={part1Ref}>
-               <h1 className={styles.title}>
+               <h1 className={`${styles.title} h1Title`}>
                   MY NAME IS
                   <br />
                   EVA PETERSON
                </h1>
 
-               <p className={styles.subTitle}>I AM PASSIONATE ABOUT GRAPHICS AND PHOTOGRAPHY.</p>
+               <p className={`${styles.subTitle} h4Title`}>
+                  I AM PASSIONATE ABOUT GRAPHICS AND PHOTOGRAPHY.
+               </p>
 
                <div className={styles.details}>
                   <p>

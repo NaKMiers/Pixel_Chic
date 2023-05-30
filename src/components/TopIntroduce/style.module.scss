@@ -29,28 +29,12 @@
 }
 
 .title {
-   font-size: 50px;
-   font-weight: 700;
-   letter-spacing: 0.05em;
-   line-height: 69px;
    margin: -8px 0 35px;
-   color: #fff;
    // background: #000;
-
-   // mobile large
-   @media (max-width: 768px) {
-      font-size: 40px;
-      line-height: 59px;
-   }
 }
 
 .subTitle {
-   font-size: 24px;
-   font-weight: 200;
-   letter-spacing: 0.05em;
-   line-height: 38px;
    margin-bottom: 60px;
-   color: #fff;
    // background: #000;
 }
 

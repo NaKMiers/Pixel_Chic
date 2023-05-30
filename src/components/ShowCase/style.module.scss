@@ -2,8 +2,6 @@
    overflow: hidden;
 }
 
-//
-
 .container {
    display: flex;
    flex-wrap: wrap;
@@ -166,16 +164,7 @@
 
    & > .title {
       padding: 0 30px 25px;
-      // background: cyan;
-
-      & > span {
-         font-size: 24px;
-         font-weight: 700;
-         letter-spacing: 0.05em;
-         line-height: 38px;
-         text-transform: uppercase;
-         color: #fff;
-      }
+      font-weight: 700;
    }
 
    &.show {

@@ -19,7 +19,7 @@ function Navigation() {
 
    const handleClickOutside = e => {
       if (headerNavRef.current && !headerNavRef.current.contains(e.target)) {
-         handleOpenNavHeader(false)
+         // handleOpenNavHeader(false)
       }
    }
 

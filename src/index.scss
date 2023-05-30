@@ -5,8 +5,7 @@ body {
 }
 
 code {
-   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
+   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 :root {
@@ -29,7 +28,9 @@ a {
    color: inherit;
 }
 
-button, input, textarea {
+button,
+input,
+textarea {
    outline: none;
    border: none;
    cursor: pointer;
@@ -38,6 +39,55 @@ button, input, textarea {
 
 ul {
    list-style: none;
+}
+
+.container {
+   max-width: 1212px;
+   width: 100%;
+   margin: 0 auto;
+}
+
+.h1Title {
+   font-size: 50px;
+   font-weight: 700;
+   letter-spacing: 0.05em;
+   line-height: 69px;
+   text-transform: uppercase;
+   color: #fff;
+
+   // mobile large
+   @media (max-width: 768px) {
+      font-size: 40px;
+      line-height: 59px;
+   }
+}
+
+.h4Title {
+   font-size: 24px;
+   font-weight: 200;
+   letter-spacing: 0.05em;
+   line-height: 38px;
+   color: #fff;
+   text-transform: uppercase;
+}
+
+.h5Title {
+   font-size: 19px;
+   font-weight: 700;
+   letter-spacing: 0.05em;
+   line-height: 30px;
+   color: #fff;
+   text-transform: uppercase;
+   margin-bottom: 1.1rem;
+}
+
+.paragraph {
+   font-size: 16px;
+   font-weight: 400;
+   font-family: 'Source Sans Pro', sans-serif;
+   line-height: 25px;
+   color: var(--text-secondary);
+   margin-bottom: 1.1rem;
 }
 
 /* show on scroll */
@@ -59,8 +109,8 @@ ul {
 }
 
 .flyLeft {
-  opacity: 0;
-  animation: flyLeft 0.8s ease-in-out 0.2s forwards;
+   opacity: 0;
+   animation: flyLeft 0.8s ease-in-out 0.2s forwards;
 }
 
 @keyframes flyLeft {

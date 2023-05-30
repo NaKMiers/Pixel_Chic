@@ -12,28 +12,31 @@ function Statictical() {
          const top = e.getBoundingClientRect().top
          const bottom = e.getBoundingClientRect().bottom
 
-         if (top < window.innerHeight && bottom > 0 && !e.className.includes(styles.appeared)) {
+         if (top < window.innerHeight && bottom > 0) {
             e.classList.add('appear')
             e.classList.add(styles.appeared)
+         }
+      })
 
-            const items = [...e.children[0].children[0].children]
-            const bar = items[0]
-            const number = items[1]
+      const diagramElements = elements.map(e => e.children[0].children[0])
+      diagramElements.forEach(e => {
+         const top = e.getBoundingClientRect().top
+         const bottom = e.getBoundingClientRect().bottom
+
+         if (top < window.innerHeight && bottom > 0 && !e.className.includes(styles.appeared)) {
+            e.classList.add(styles.appeared)
+            const bar = e.children[0]
+            const number = e.children[1]
             const color = bar.getAttribute('data-color')
-
             let start = 0
             const end = parseInt(bar.getAttribute('data-value'))
-
             const counter = setInterval(() => {
                if (start === end) {
-                  console.log('counter-clear: ', counter)
                   clearInterval(counter)
                }
-
                const deg = (360 / 100) * start
                bar.style.background = `conic-gradient(${color} 0deg ${deg}deg, transparent ${deg}deg)`
                number.textContent = start
-
                start += 1
             }, 1000 / end)
          }
@@ -46,8 +49,13 @@ function Statictical() {
             countAppeared++
          }
       })
-
-      if (countAppeared === elements.length) {
+      diagramElements.forEach(e => {
+         if (e.className.includes(styles.appeard)) {
+            countAppeared++
+         }
+      })
+      console.log(countAppeared)
+      if (countAppeared === elements.length + diagramElements.length) {
          console.log('removed---Statictical')
          window.removeEventListener('scroll', handleScrollAnimation)
       }
@@ -64,7 +72,7 @@ function Statictical() {
 
    return (
       <section className={styles.Statictical}>
-         <div className={styles.container} ref={containerRef}>
+         <div className={`${styles.container} container`} ref={containerRef}>
             <div className={styles.staticItem}>
                <div className={styles.staticWrap}>
                   <div className={styles.cirle}>
@@ -75,7 +83,9 @@ function Statictical() {
 
                <div className={styles.content}>
                   <p>Photography</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                  <p className={`paragraph`}>
+                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </p>
                </div>
             </div>
 
@@ -89,7 +99,9 @@ function Statictical() {
 
                <div className={styles.content}>
                   <p>Illustration</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                  <p className={`paragraph`}>
+                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </p>
                </div>
             </div>
 
@@ -103,7 +115,9 @@ function Statictical() {
 
                <div className={styles.content}>
                   <p>Objects</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                  <p className={`paragraph`}>
+                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </p>
                </div>
             </div>
 
@@ -117,7 +131,9 @@ function Statictical() {
 
                <div className={styles.content}>
                   <p>Vector</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                  <p className={`paragraph`}>
+                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </p>
                </div>
             </div>
          </div>

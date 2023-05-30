@@ -136,7 +136,7 @@ function CaseItem({ data, setImageReview }) {
                </div>
             </div>
 
-            <div className={styles.title}>
+            <div className={`${styles.title} h4Title`}>
                <span>{data.title}</span>
             </div>
          </div>
