@@ -71,7 +71,7 @@
       font-weight: 200;
       font-family: 'Source Sans Pro', sans-serif;
       line-height: 37px;
-      color: #99a9b5;
+      color: var(--text-secondary);
       // background: beige;
    }
 
@@ -90,6 +90,7 @@
 }
 
 .image {
+   opacity: 0; // for appear
    width: 100%;
    & > img {
       width: 100%;

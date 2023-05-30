@@ -279,7 +279,7 @@
 
       font-size: 16px;
       font-family: 'Source Sans Pro', sans-serif;
-      color: #99a9b5;
+      color: var(--text-secondary);
 
       &.active {
          position: relative;

@@ -42,7 +42,7 @@
    font-size: 16px;
    font-family: 'Source Sans Pro', sans-serif;
    line-height: 25px;
-   color: #99a9b5;
+   color: var(--text-secondary);
    margin-bottom: 1.1rem;
    // background: beige;
 }
@@ -60,6 +60,7 @@
 
 .image {
    width: 100%;
+   opacity: 0; // for appear
    & > img {
       width: 100%;
    }
