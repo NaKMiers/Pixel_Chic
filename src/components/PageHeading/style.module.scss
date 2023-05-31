@@ -8,8 +8,12 @@
    padding: 0 21px;
    // background: #ccc;
 
-   & > h1 {
+   & > .title {
       // background: blueviolet;
       margin-bottom: 30px;
+   }
+
+   & > .subTitle {
+      letter-spacing: 0.03em;
    }
 }

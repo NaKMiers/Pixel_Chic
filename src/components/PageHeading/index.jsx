@@ -44,7 +44,7 @@ function PageHeading({ title, subTitle }) {
    return (
       <section className={styles.PageHeading}>
          <div className={`${styles.container} container`} ref={containerRef}>
-            <h1 className={`h1Title`}>
+            <h1 className={`${styles.title} h1Title`}>
                {title.map((t, i) => (
                   <Fragment key={i}>
                      {t}
@@ -52,7 +52,7 @@ function PageHeading({ title, subTitle }) {
                   </Fragment>
                ))}
             </h1>
-            <h4 className={`h4Title`}>{subTitle}</h4>
+            <h4 className={`${styles.subTitle} h4Title`}>{subTitle}</h4>
          </div>
       </section>
    )
