@@ -1,9 +1,10 @@
 import React, { memo, useCallback, useEffect, useRef } from 'react'
-import { blogs } from '../../data'
 import BlogItem from './BlogItem'
 import styles from './style.module.scss'
+import { useSelector } from 'react-redux'
 
 function Blogs() {
+   const blogs = useSelector(state => state.blogs)
    const containerRef = useRef(null)
 
    // show on scroll

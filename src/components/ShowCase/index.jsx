@@ -1,9 +1,11 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
-import { showcase } from '../../data'
 import CaseItem from './CaseItem'
 import styles from './style.module.scss'
+import { useSelector } from 'react-redux'
 
 function ShowCase() {
+   const showcase = useSelector(state => state.showcase)
+
    const containerRef = useRef(null)
    const [caseLength, setCaseLength] = useState(4)
 

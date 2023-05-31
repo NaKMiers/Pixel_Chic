@@ -145,3 +145,20 @@ ul {
       transform: scale(1);
    }
 }
+
+.flipIn {
+   opacity: 0;
+   transform-origin: top center;
+   animation: flipIn 0.8s ease-in-out 0.2s forwards;
+}
+
+@keyframes flipIn {
+   0% {
+      opacity: 0;
+   }
+
+   100% {
+      opacity: 1;
+      transform: perspective(800px);
+   }
+}
