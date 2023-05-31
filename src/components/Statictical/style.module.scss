@@ -30,7 +30,7 @@
       & > .cirle {
          background: #4a4a4a;
          & > .text {
-            color: #f7be68;
+            color: var(--yellow);
          }
       }
    }
@@ -39,7 +39,7 @@
       & > .cirle {
          background: #aaedf0;
          & > .text {
-            color: #00c1cf;
+            color: var(--primary);
          }
       }
    }

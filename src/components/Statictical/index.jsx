@@ -76,7 +76,7 @@ function Statictical() {
             <div className={styles.staticItem}>
                <div className={styles.staticWrap}>
                   <div className={styles.cirle}>
-                     <div className={styles.cirleBar} data-value='90' data-color='#f7be68' />
+                     <div className={styles.cirleBar} data-value='90' data-color='var(--yellow)' />
                      <span className={styles.text}>90</span>
                   </div>
                </div>
@@ -92,7 +92,7 @@ function Statictical() {
             <div className={styles.staticItem}>
                <div className={styles.staticWrap}>
                   <div className={styles.cirle}>
-                     <div className={styles.cirleBar} data-value='60' data-color='#00c1cf' />
+                     <div className={styles.cirleBar} data-value='60' data-color='var(--primary)' />
                      <span className={styles.text}>60</span>
                   </div>
                </div>

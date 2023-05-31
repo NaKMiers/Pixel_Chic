@@ -25,7 +25,7 @@
    }
 
    &:nth-of-type(2) {
-      background: #fed851;
+      background: var(--yellow);
    }
 
    &:nth-of-type(3) {
@@ -45,9 +45,9 @@
 }
 
 .title {
-   color: #1c1d28;
+   color: var(--common-background);
 }
 
 .paragraph {
-   color: #1c1d28;
+   color: var(--common-background);
 }

@@ -9,8 +9,12 @@ import pinterest from '../../assets/imgs/pinterestWhite.png'
 import tumblr from '../../assets/imgs/tumblrWhite.png'
 import linkedin from '../../assets/imgs/linkedinWhite.png'
 import reddit from '../../assets/imgs/redditWhite.png'
+import { useDispatch } from 'react-redux'
+import actions from '../../actions'
 
-function CaseItem({ data, setImageReview }) {
+function CaseItem({ data }) {
+   const dispatch = useDispatch()
+
    const navigate = useNavigate()
    const overlayRef = useRef(null)
    const socialsRef = useRef(null)
@@ -66,7 +70,7 @@ function CaseItem({ data, setImageReview }) {
                   className={styles.icon}
                   onClick={e => {
                      e.stopPropagation()
-                     setImageReview(data.image)
+                     dispatch(actions.reviewImage(data.image))
                   }}
                >
                   <FontAwesomeIcon icon={faCamera} />

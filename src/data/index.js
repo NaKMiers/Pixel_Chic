@@ -34,6 +34,23 @@ import blogImg4 from '../assets/imgs/blogImg4.jpg'
 import blogImg5 from '../assets/imgs/blogImg5.jpg'
 import blogImg6 from '../assets/imgs/blogImg6.jpg'
 
+import service1_1 from '../assets/imgs/service1-1.jpg'
+import service1_2 from '../assets/imgs/service1-2.jpg'
+import service1_3 from '../assets/imgs/service1-3.jpg'
+import service1_4 from '../assets/imgs/service1-4.jpg'
+import service1_5 from '../assets/imgs/service1-5.jpg'
+import service2_1 from '../assets/imgs/service2-1.jpg'
+import service2_2 from '../assets/imgs/service2-2.jpg'
+import service2_3 from '../assets/imgs/service2-3.jpg'
+import service2_4 from '../assets/imgs/service2-4.jpg'
+import service2_5 from '../assets/imgs/service2-5.jpg'
+import service3_1 from '../assets/imgs/service3-1.jpg'
+import service3_2 from '../assets/imgs/service3-2.jpg'
+import service3_3 from '../assets/imgs/service3-3.jpg'
+import service3_4 from '../assets/imgs/service3-4.jpg'
+import service3_5 from '../assets/imgs/service3-5.jpg'
+import { faCamera, faFlag, faPencil } from '@fortawesome/free-solid-svg-icons'
+
 // showcase
 export const showcase = [
    {
@@ -221,5 +238,53 @@ export const blogs = [
       categories: ['Creative Web Project', 'Showcase', 'Trendy Layout'],
       image: blogImg6,
       date: 'February 25, 2019',
+   },
+]
+
+// services
+export const services = [
+   {
+      id: 1,
+      title: 'CREATIVE PHOTOGRAPHY',
+      desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do\neiusmod tempor incididunt ut labore et dolore magna aliqua:',
+      icon: faCamera,
+      features: [
+         'Lorem ipsum dolor sit amet',
+         'Sed do eiusmod tempor',
+         'Ut enim ad minim veniam',
+         'Duis aute irure dolor in reprehenderit',
+      ],
+      mainImage: service1_1,
+      subImages: [service1_2, service1_3, service1_4, service1_5],
+   },
+
+   {
+      id: 2,
+      title: 'GRAPHIC DESIGN',
+      desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do\neiusmod tempor incididunt ut labore et dolore magna aliqua:',
+      icon: faFlag,
+      features: [
+         'Lorem ipsum dolor sit amet',
+         'Sed do eiusmod tempor',
+         'Ut enim ad minim veniam',
+         'Duis aute irure dolor in reprehenderit',
+      ],
+      mainImage: service2_1,
+      subImages: [service2_2, service2_3, service2_4, service2_5],
+   },
+
+   {
+      id: 3,
+      title: 'ILLUSTRATION DESIGN',
+      desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do\neiusmod tempor incididunt ut labore et dolore magna aliqua:',
+      icon: faPencil,
+      features: [
+         'Lorem ipsum dolor sit amet',
+         'Sed do eiusmod tempor',
+         'Ut enim ad minim veniam',
+         'Duis aute irure dolor in reprehenderit',
+      ],
+      mainImage: service3_1,
+      subImages: [service3_2, service3_3, service3_4, service3_5],
    },
 ]

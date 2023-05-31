@@ -7,7 +7,7 @@ import ContactForm from '../../components/ContactForm'
 function HireMePage() {
    return (
       <div className={styles.HireMePage}>
-         <PageHeading title={['Hire me if', 'you like my work']} subTitle='Contact Info' />
+         <PageHeading title={'Hire me if\nyou like my work'} subTitle='Contact Info' />
          <ContactInfo />
          <ContactForm />
       </div>

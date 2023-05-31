@@ -6,7 +6,7 @@ import Blogs from '../../components/Blogs'
 function BlogsPage() {
    return (
       <div className={styles.BlogsPage}>
-         <PageHeading title={['My Blogs']} subTitle='Latest news from the blog' />
+         <PageHeading title='My Blogs' subTitle='Latest news from the blog' />
          <Blogs />
       </div>
    )

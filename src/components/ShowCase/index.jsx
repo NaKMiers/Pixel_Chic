@@ -2,53 +2,13 @@ import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { showcase } from '../../data'
 import CaseItem from './CaseItem'
 import styles from './style.module.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faX } from '@fortawesome/free-solid-svg-icons'
 
 function ShowCase() {
-   const [imageReview, setImageReview] = useState(null)
-   const [isZoom, setZoom] = useState(false)
-   const imageReviewRef = useRef(null)
-   const imageRef = useRef(null)
    const containerRef = useRef(null)
    const [caseLength, setCaseLength] = useState(4)
 
-   // open image review
-   const handleOpenImageReview = useCallback(() => {
-      imageReviewRef.current.style.display = 'flex'
-      setTimeout(() => {
-         imageReviewRef.current.style.opacity = 1
-      }, 0)
-   }, [])
-
-   // close image review
-   const handleCloseImageReview = useCallback(() => {
-      imageReviewRef.current.style.opacity = 0
-      setTimeout(() => {
-         imageReviewRef.current.style.display = 'none'
-         setImageReview(null)
-      }, 510) // imageReview duration 0.5s
-   }, [])
-
-   // close when click out side
-   const handleClickOutSide = useCallback(
-      e => {
-         if (imageRef.current && !imageRef.current.contains(e.target)) {
-            handleCloseImageReview()
-         }
-      },
-      [handleCloseImageReview]
-   )
-
-   // open image review
-   useEffect(() => {
-      if (imageReview) {
-         handleOpenImageReview()
-      }
-   }, [imageReview, handleOpenImageReview])
-
+   // set caseLength on mount
    const setInitialCaseLength = useCallback(() => {
-      console.log('setInitialCaseLength')
       const width = window.innerWidth
       if (width > 1200) {
          setCaseLength(4)
@@ -61,8 +21,8 @@ function ShowCase() {
       }
    }, [])
 
+   // update caseLength on resize
    const handleResize = useCallback(() => {
-      console.log('handleResize')
       const width = window.innerWidth
 
       if (width > 1200 && caseLength !== 4) {
@@ -140,29 +100,8 @@ function ShowCase() {
       <section className={styles.ShowCase}>
          <div className={styles.container} ref={containerRef}>
             {showcase.map(item => (
-               <CaseItem data={item} key={item.id} setImageReview={setImageReview} />
+               <CaseItem data={item} key={item.id} />
             ))}
-         </div>
-
-         <div className={styles.imageReview} ref={imageReviewRef} onClick={handleClickOutSide}>
-            <div className={styles.buttonWrap}>
-               <button
-                  onClick={e => {
-                     e.stopPropagation()
-                     setZoom(!isZoom)
-                  }}
-               >
-                  <FontAwesomeIcon icon={faSearch} />
-               </button>
-
-               <button>
-                  <FontAwesomeIcon icon={faX} />
-               </button>
-            </div>
-
-            <div className={`${styles.image} ${isZoom ? styles.zoom : ''}`} ref={imageRef}>
-               <img src={imageReview} alt='thumbnail' onClick={() => setZoom(!isZoom)} />
-            </div>
          </div>
       </section>
    )

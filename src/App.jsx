@@ -12,6 +12,7 @@ import BlogsPage from './pages/BlogsPage'
 import BlogPage from './pages/BlogPage'
 import HireMePage from './pages/HireMePage'
 import NotFoundPage from './pages/NotFoundPage'
+import ImageReview from './components/ImageReview'
 
 function App() {
    return (
@@ -30,6 +31,7 @@ function App() {
             <Route path='*' exact={false} element={<NotFoundPage />} />
          </Routes>
 
+         <ImageReview />
          <ScrollToTopButton />
       </div>
    )

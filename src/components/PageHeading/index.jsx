@@ -1,4 +1,4 @@
-import React, { Fragment, memo, useCallback, useEffect, useRef } from 'react'
+import React, { memo, useCallback, useEffect, useRef } from 'react'
 import styles from './style.module.scss'
 
 function PageHeading({ title, subTitle }) {
@@ -44,14 +44,7 @@ function PageHeading({ title, subTitle }) {
    return (
       <section className={styles.PageHeading}>
          <div className={`${styles.container} container`} ref={containerRef}>
-            <h1 className={`${styles.title} h1Title`}>
-               {title.map((t, i) => (
-                  <Fragment key={i}>
-                     {t}
-                     {i !== title.length - 1 && <br />}
-                  </Fragment>
-               ))}
-            </h1>
+            <h1 className={`${styles.title} h1Title`}>{title}</h1>
             <h4 className={`${styles.subTitle} h4Title`}>{subTitle}</h4>
          </div>
       </section>

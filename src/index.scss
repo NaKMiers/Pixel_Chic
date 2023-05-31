@@ -14,6 +14,7 @@ code {
    --common-background: #1c1d28;
    --text-secondary: #99a9b5;
 
+   --yellow: #f7be68;
    --standard-duration: 0.2s;
 }
 
@@ -67,6 +68,7 @@ ul {
    font-weight: 200;
    letter-spacing: 0.05em;
    line-height: 38px;
+   white-space: pre-wrap;
    color: #fff;
    text-transform: uppercase;
 }
@@ -76,8 +78,9 @@ ul {
    font-weight: 700;
    letter-spacing: 0.05em;
    line-height: 30px;
-   color: #fff;
    text-transform: uppercase;
+   white-space: pre-wrap;
+   color: #fff;
    margin-bottom: 1.1rem;
 }
 
@@ -87,6 +90,7 @@ ul {
    font-family: 'Source Sans Pro', sans-serif;
    line-height: 25px;
    color: var(--text-secondary);
+   white-space: pre-wrap;
    margin-bottom: 1.1rem;
 }
 
