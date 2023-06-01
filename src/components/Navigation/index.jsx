@@ -115,24 +115,54 @@ function Navigation() {
                </div>
 
                <div className={styles.socials}>
-                  <div className={styles.social}>
+                  <a
+                     href='https://www.facebook.com/'
+                     target='_blank'
+                     rel='noreferrer'
+                     className={styles.social}
+                  >
                      <img src={facebook} alt='social' />
-                  </div>
-                  <div className={styles.social}>
+                  </a>
+                  <a
+                     href='https://www.linkedin.com/'
+                     target='_blank'
+                     rel='noreferrer'
+                     className={styles.social}
+                  >
                      <img src={linkedin} alt='social' />
-                  </div>
-                  <div className={styles.social}>
+                  </a>
+                  <a
+                     href='https://twitter.com/'
+                     target='_blank'
+                     rel='noreferrer'
+                     className={styles.social}
+                  >
                      <img src={twitter} alt='social' />
-                  </div>
-                  <div className={styles.social}>
+                  </a>
+                  <a
+                     href='https://www.instagram.com/'
+                     target='_blank'
+                     rel='noreferrer'
+                     className={styles.social}
+                  >
                      <img src={instagram} alt='social' />
-                  </div>
-                  <div className={styles.social}>
+                  </a>
+                  <a
+                     href='https://www.pinterest.com/'
+                     target='_blank'
+                     rel='noreferrer'
+                     className={styles.social}
+                  >
                      <img src={pinterest} alt='social' />
-                  </div>
-                  <div className={styles.social}>
+                  </a>
+                  <a
+                     href='https://www.youtube.com/'
+                     target='_blank'
+                     rel='noreferrer'
+                     className={styles.social}
+                  >
                      <img src={youtube} alt='social' />
-                  </div>
+                  </a>
                </div>
             </div>
          </div>

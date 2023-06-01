@@ -12,6 +12,7 @@ import BlogsPage from './pages/BlogsPage'
 import BlogPage from './pages/BlogPage'
 import HireMePage from './pages/HireMePage'
 import NotFoundPage from './pages/NotFoundPage'
+import CategoriesPage from './pages/CategoriesPage'
 import ImageReview from './components/ImageReview'
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <Route path='/blogs' exact element={<BlogsPage />} />
             <Route path='/blogs/:id' exact={false} element={<BlogPage />} />
             <Route path='/hire-me' exact element={<HireMePage />} />
+            <Route path='/categories' exact element={<CategoriesPage />} />
             <Route path='*' exact={false} element={<NotFoundPage />} />
          </Routes>
 

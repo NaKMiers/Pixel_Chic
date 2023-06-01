@@ -151,6 +151,15 @@
          object-position: center;
       }
 
+      &:hover > .overlay {
+         opacity: 1;
+
+         & > .iconWrap {
+            top: 50%;
+            opacity: 1;
+         }
+      }
+
       & > .overlay {
          position: absolute;
          top: 0;
@@ -163,30 +172,19 @@
          opacity: 0;
          transition: 0.5s ease-in-out;
 
-         &.open {
-            & > .iconWrap {
-               opacity: 0;
-               animation: floatDown 0.3s ease-in-out 0.2s forwards;
-            }
-         }
-
-         &.close {
-            & > .iconWrap {
-               animation: floatUp 0.3s ease-in-out 0s forwards;
-            }
-         }
-
          & > .iconWrap {
             position: absolute;
-            top: 50%;
+            top: 0;
             left: 50%;
             width: 100%;
             transform: translate(-50%, -50%);
+            opacity: 0;
 
             display: flex;
             justify-content: center;
             width: 100%;
             gap: 12px;
+            transition: 0.3s ease-in-out;
 
             & > .icon {
                font-size: 20px;
@@ -194,27 +192,5 @@
             }
          }
       }
-   }
-}
-
-@keyframes floatUp {
-   from {
-      opacity: 1;
-      top: 50%;
-   }
-   to {
-      opacity: 0;
-      top: 0;
-   }
-}
-
-@keyframes floatDown {
-   from {
-      opacity: 0;
-      top: 0;
-   }
-   to {
-      opacity: 1;
-      top: 50%;
    }
 }

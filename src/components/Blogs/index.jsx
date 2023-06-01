@@ -4,7 +4,7 @@ import styles from './style.module.scss'
 import { useSelector } from 'react-redux'
 
 function Blogs() {
-   const blogs = useSelector(state => state.blogs)
+   const blogs = useSelector(state => state.blogs.posts)
    const containerRef = useRef(null)
 
    // show on scroll

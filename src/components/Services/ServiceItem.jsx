@@ -30,7 +30,7 @@ function Services({ data, reverse }) {
 
          if (top < window.innerHeight && bottom > 0) {
             delay += 0.1
-            e.style.animation = `flipIn 0.8s ease-in-out ${delay}s forwards`
+            e.style.animation = `flipIn 0.6s ease-in-out ${delay}s forwards`
             e.classList.add(styles.appeared)
          }
       })
