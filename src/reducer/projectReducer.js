@@ -20,6 +20,7 @@ const initState = [
       categories: ['Photography'],
       image: image1,
       likes: 1,
+      createdAt: 1685590712312,
    },
    {
       id: 2,
@@ -29,6 +30,7 @@ const initState = [
       categories: ['Creative Web Project'],
       image: image2,
       likes: 1,
+      createdAt: 1685590713456,
    },
    {
       id: 3,
@@ -38,6 +40,7 @@ const initState = [
       categories: ['Minimalism'],
       image: image3,
       likes: 1,
+      createdAt: 1685590712222,
    },
    {
       id: 4,
@@ -47,6 +50,7 @@ const initState = [
       categories: ['Photography'],
       image: image4,
       likes: 1,
+      createdAt: 1685590711345,
    },
    {
       id: 5,
@@ -56,6 +60,7 @@ const initState = [
       categories: ['Creative Web Project'],
       image: image5,
       likes: 1,
+      createdAt: 1685590712153,
    },
    {
       id: 6,
@@ -65,6 +70,7 @@ const initState = [
       categories: ['Photography'],
       image: image6,
       likes: 1,
+      createdAt: 1685590712342,
    },
    {
       id: 7,
@@ -74,6 +80,7 @@ const initState = [
       categories: ['Creative Web Project'],
       image: image7,
       likes: 1,
+      createdAt: 1685590715476,
    },
    {
       id: 8,
@@ -83,6 +90,7 @@ const initState = [
       categories: ['Minimalism', 'Photography'],
       image: image8,
       likes: 1,
+      createdAt: 1685590719789,
    },
    {
       id: 9,
@@ -92,6 +100,7 @@ const initState = [
       categories: ['Minimalism', 'Photography'],
       image: image9,
       likes: 1,
+      createdAt: 1685590713567,
    },
    {
       id: 10,
@@ -101,6 +110,7 @@ const initState = [
       categories: ['Photography'],
       image: image10,
       likes: 1,
+      createdAt: 1685590719808,
    },
    {
       id: 11,
@@ -110,6 +120,7 @@ const initState = [
       categories: ['Minimalism'],
       image: image11,
       likes: 1,
+      createdAt: 1685590711221,
    },
    {
       id: 12,
@@ -119,6 +130,7 @@ const initState = [
       categories: ['Creative Web Project'],
       image: image12,
       likes: 1,
+      createdAt: 1685590715311,
    },
 ]
 

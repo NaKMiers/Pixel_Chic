@@ -1,15 +1,192 @@
-import React, { memo, useState } from 'react'
-import styles from './styles.module.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import ProjectItem from './ProjectItem'
+import styles from './styles.module.scss'
 
 function Portfolio() {
-   const projects = useSelector(state => state.projects)
+   const projects = useSelector(state => {
+      state.projects.sort((a, b) => {
+         return a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0
+      })
+      state.projects.reverse()
+      return state.projects
+   })
+   const [data, setData] = useState(projects)
 
    const [openFilter, setOpenFilter] = useState(false)
-   const [filter, setFilters] = useState({ category: 'All', sortByName: false, sortByAsc: false })
+   const [filter, setFilter] = useState('All')
+   const [sortByName, setSortByName] = useState(false)
+   const [sortAsc, setSortAsc] = useState(false)
+
+   const projectWrapRef = useRef(null)
+   const [projectLength, setProjectLength] = useState(3)
+
+   // set the amount of item per row on mount
+   const setInitialCaseLength = useCallback(() => {
+      const width = window.innerWidth
+      if (width > 768) {
+         console.log(3)
+         setProjectLength(3)
+      } else if (width <= 768 && width > 548) {
+         console.log(2)
+         setProjectLength(2)
+      } else if (width <= 548) {
+         console.log(1)
+         setProjectLength(1)
+      }
+   }, [])
+
+   // update the amount of item per row on resize
+   const handleResize = useCallback(() => {
+      const width = window.innerWidth
+
+      if (width > 768 && projectLength !== 3) {
+         console.log(3)
+         setProjectLength(3)
+      } else if (width <= 768 && width > 548 && projectLength !== 2) {
+         console.log(2)
+         setProjectLength(2)
+      } else if (width <= 548 && projectLength !== 1) {
+         console.log(1)
+         setProjectLength(1)
+      }
+   }, [projectLength])
+
+   // update the amount of item per row
+   useEffect(() => {
+      setInitialCaseLength()
+      window.addEventListener('resize', handleResize)
+      return () => {
+         window.removeEventListener('resize', handleResize)
+      }
+   }, [setInitialCaseLength, handleResize])
+
+   // show on scroll
+   const handleScrollAnimation = useCallback(() => {
+      console.log('handleScrollAnimation')
+      const elements = [...projectWrapRef.current.children]
+      const result = []
+
+      for (let i = 0; i < elements.length; i += projectLength) {
+         const chunk = elements.slice(i, i + projectLength)
+         result.push(chunk)
+      }
+
+      result.forEach(chunk => {
+         let delay = 0.2
+         chunk.forEach(e => {
+            const top = e.getBoundingClientRect().top
+            const bottom = e.getBoundingClientRect().bottom
+            e.style.opacity = 0
+
+            if (top < window.innerHeight && bottom > 0) {
+               delay += 0.1
+               e.style.transform = `perspective(800px) rotateX(-75deg)`
+               e.style.animation = `flipIn 0.6s ease-in-out ${delay}s forwards`
+               e.classList.add(styles.appeared)
+            }
+         })
+      })
+
+      // remove event listener after all showed
+      let countAppeared = 0
+      elements.forEach(e => {
+         if (e.className.includes(styles.appeared)) {
+            countAppeared++
+         }
+      })
+
+      if (countAppeared === elements.length) {
+         console.log('removed---Portfolio')
+         window.removeEventListener('scroll', handleScrollAnimation)
+      }
+   }, [projectLength])
+
+   useEffect(() => {
+      handleScrollAnimation()
+      window.addEventListener('scroll', handleScrollAnimation)
+
+      return () => {
+         window.removeEventListener('scroll', handleScrollAnimation)
+      }
+   }, [handleScrollAnimation])
+
+   // clear animation appear
+   const handleClearAnimation = useCallback(() => {
+      const elements = [...projectWrapRef.current.children]
+      elements.forEach(e => {
+         e.classList.remove(styles.appeared)
+         e.style.animation = 'none'
+         e.style.transform = 'none'
+         e.opacity = 0
+      })
+   }, [])
+
+   // handle filter
+   const handleFilter = useCallback(
+      type => {
+         handleClearAnimation()
+         // undefine animation delay
+         setTimeout(() => {
+            handleScrollAnimation()
+         }, 0)
+         switch (type) {
+            case 'All':
+               setData(projects)
+               break
+
+            default:
+               const newData = projects.filter(project => project.categories.includes(type))
+               setData(newData)
+               setFilter(type)
+         }
+      },
+      [projects, handleClearAnimation, handleScrollAnimation]
+   )
+
+   // handle sort
+   const handleSort = useCallback(
+      (type, value) => {
+         handleClearAnimation()
+         // undefine animation delay
+         setTimeout(() => {
+            handleScrollAnimation()
+         }, 0)
+         switch (type) {
+            case 'sort-by-name':
+               setSortByName(value)
+               if (value) {
+                  let newData = [...data]
+                  newData.sort((a, b) => {
+                     let titleA = a.title.toLowerCase()
+                     let titleB = b.title.toLowerCase()
+                     return titleA < titleB ? -1 : titleA > titleB ? 1 : 0
+                  })
+                  setData(newData)
+               } else {
+                  let newData = [...data]
+                  newData = projects.sort((a, b) => {
+                     return a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0
+                  })
+                  setData(newData)
+               }
+               break
+
+            case 'sort-asc':
+               setSortAsc(value)
+               let newData = [...data]
+               newData.reverse()
+               setData(newData)
+               break
+
+            default:
+               break
+         }
+      },
+      [data, projects, handleClearAnimation, handleScrollAnimation]
+   )
 
    return (
       <section className={styles.Portfolio}>
@@ -18,50 +195,49 @@ function Portfolio() {
                <div className={styles.filterMenuBtn} onClick={() => setOpenFilter(!openFilter)}>
                   <FontAwesomeIcon icon={faEllipsis} />
                </div>
-               <ul className={`${styles.filterMenu} ${openFilter ? styles.show : ''}`}>
-                  <li>All</li>
-                  <li>Branding</li>
-                  <li>Illustration</li>
-                  <li>Marketing</li>
-                  <li>Web Design</li>
+               <ul
+                  className={`${styles.filterMenu} ${openFilter ? styles.show : ''}`}
+                  onClick={() => setOpenFilter(!openFilter)}
+               >
+                  <li onClick={() => handleFilter('All')}>All</li>
+                  <li onClick={() => handleFilter('Creative Web Project')}>Creative Web Project</li>
+                  <li onClick={() => handleFilter('Minimalism')}>Minimalism</li>
+                  <li onClick={() => handleFilter('Photography')}>Photography</li>
                </ul>
 
                <div className={styles.filterLeft}>
                   <button
-                     className={filter.category === 'all' ? styles.active : ''}
-                     onClick={() => setFilters(prev => ({ ...prev, category: 'all' }))}
+                     className={filter === 'All' ? styles.active : ''}
+                     onClick={() => handleFilter('All')}
                   >
                      all
                   </button>
                   <button
-                     className={filter.category === 'creative web project' ? styles.active : ''}
-                     onClick={() => setFilters(prev => ({ ...prev, category: 'creative web project' }))}
+                     className={filter === 'Creative Web Project' ? styles.active : ''}
+                     onClick={() => handleFilter('Creative Web Project')}
                   >
                      creative web project
                   </button>
                   <button
-                     className={filter.category === 'minimalism' ? styles.active : ''}
-                     onClick={() => setFilters(prev => ({ ...prev, category: 'minimalism' }))}
+                     className={filter === 'Minimalism' ? styles.active : ''}
+                     onClick={() => handleFilter('Minimalism')}
                   >
                      minimalism
                   </button>
                   <button
-                     className={filter.category === 'photography' ? styles.active : ''}
-                     onClick={() => setFilters(prev => ({ ...prev, category: 'photography' }))}
+                     className={filter === 'Photography' ? styles.active : ''}
+                     onClick={() => handleFilter('Photography')}
                   >
                      photography
                   </button>
                </div>
 
                <div className={styles.filterRight}>
-                  <div
-                     className={styles.sort}
-                     onClick={() => setFilters(prev => ({ ...prev, sortByName: !prev.sortByName }))}
-                  >
+                  <div className={styles.sort} onClick={() => handleSort('sort-by-name', !sortByName)}>
                      <span>Date</span>
 
                      <button className={styles.switchBtn}>
-                        <div className={filter.sortByName ? styles.active : ''} />
+                        <div className={sortByName ? styles.active : ''} />
                      </button>
 
                      <span>Name</span>
@@ -71,12 +247,14 @@ function Portfolio() {
 
                   <div
                      className={styles.sort}
-                     onClick={() => setFilters(prev => ({ ...prev, sortByAsc: !prev.sortByAsc }))}
+                     // onClick={() => setFilters(prev => ({ ...prev, sortByAsc: !prev.sortByAsc }))}
+                     // onClick={() => setSortAsc(!sortAsc)}
+                     onClick={() => handleSort('sort-asc', !sortAsc)}
                   >
                      <span>Desc</span>
 
                      <button className={styles.switchBtn}>
-                        <div className={filter.sortByAsc ? styles.active : ''} />
+                        <div className={sortAsc ? styles.active : ''} />
                      </button>
 
                      <span>Asc</span>
@@ -84,9 +262,9 @@ function Portfolio() {
                </div>
             </div>
 
-            <div className={styles.projectWrap}>
-               {projects.map(project => (
-                  <ProjectItem data={project} />
+            <div className={styles.projectWrap} ref={projectWrapRef}>
+               {data.map(project => (
+                  <ProjectItem data={project} key={project.id} />
                ))}
             </div>
          </div>

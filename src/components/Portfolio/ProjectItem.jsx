@@ -1,13 +1,55 @@
-import React, { Fragment, memo } from 'react'
-import styles from './styles.module.scss'
+import { faCamera, faFileLines, faGlobe, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import React, { Fragment, memo, useCallback, useRef } from 'react'
+import styles from './styles.module.scss'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import actions from '../../actions'
 
 function ProjectItem({ data }) {
+   const navigate = useNavigate()
+   const dispatch = useDispatch()
+   const iconWrapRef = useRef(null)
+
+   const handleMouseOver = useCallback(() => {
+      iconWrapRef.current.classList.remove(styles.hide)
+      iconWrapRef.current.classList.add(styles.show)
+   }, [])
+
+   const handleMouseLeave = useCallback(() => {
+      iconWrapRef.current.classList.remove(styles.show)
+      iconWrapRef.current.classList.add(styles.hide)
+   }, [])
+
    return (
-      <div className={styles.projectItem}>
+      <div
+         className={styles.projectItem}
+         onMouseOver={handleMouseOver}
+         onMouseLeave={handleMouseLeave}
+         onClick={() => navigate('/portflio/1')}
+      >
          <div className={styles.thumbnail}>
-            <img src='' alt='thumbnail' />
+            <img src={data.image} alt='thumbnail' />
+
+            <div className={styles.overlay}>
+               <div className={styles.iconWrap} ref={iconWrapRef}>
+                  <div className={styles.icon}>
+                     <FontAwesomeIcon icon={faFileLines} />
+                  </div>
+                  <div
+                     className={styles.icon}
+                     onClick={e => {
+                        e.stopPropagation()
+                        dispatch(actions.reviewImage(data.image))
+                     }}
+                  >
+                     <FontAwesomeIcon icon={faCamera} />
+                  </div>
+                  <Link to='/portfolio' className={styles.icon} onClick={e => e.stopPropagation()}>
+                     <FontAwesomeIcon icon={faGlobe} />
+                  </Link>
+               </div>
+            </div>
          </div>
 
          <div className={styles.content}>
@@ -16,15 +58,15 @@ function ProjectItem({ data }) {
             <div className={styles.captionSep} />
 
             <p className={styles.desc}>{data.desc}</p>
-            <p className={styles.dataAndCtgs}>
-               {data.date}
+            <div className={styles.dataAndCtgs}>
+               <span>{data.date}</span>
                {data.categories.map((category, index) => (
                   <Fragment key={index}>
-                     <span>{category}</span>
+                     <span className={styles.category}>{category}</span>
                      {index !== data.categories.length - 1 && <div className={styles.sep} />}
                   </Fragment>
                ))}
-            </p>
+            </div>
 
             <div className={styles.heartIcon}>
                <FontAwesomeIcon icon={faHeart} />
