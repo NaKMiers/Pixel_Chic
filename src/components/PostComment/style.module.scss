@@ -23,6 +23,11 @@
       letter-spacing: 0.05em;
       line-height: 53px;
 
+      // mobile large
+      @media (max-width: 768px) {
+         font-size: 30px;
+      }
+
       & > span {
          font-weight: 700;
       }
@@ -48,6 +53,7 @@
       // tablet
       @media (max-width: 980px) {
          width: 100%;
+         margin-bottom: 1.1rem;
       }
 
       & > input {
@@ -108,6 +114,11 @@
       padding: 0 25px;
       margin: 35px 0 30px;
       border-radius: 4px;
+
+      // tablet
+      @media (max-width: 980px) {
+         margin: 42px 0 30px;
+      }
 
       font-size: 19px;
       font-weight: 700;

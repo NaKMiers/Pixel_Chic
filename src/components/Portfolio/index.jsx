@@ -81,7 +81,7 @@ function Portfolio() {
             const bottom = e.getBoundingClientRect().bottom
             e.style.opacity = 0
 
-            if (top < window.innerHeight && bottom > 0) {
+            if (top < window.innerHeight && bottom > 0 && !e.className.includes(styles.appeared)) {
                delay += 0.1
                e.style.transform = `perspective(800px) rotateX(-75deg)`
                e.style.animation = `flipIn 0.6s ease-in-out ${delay}s forwards`
@@ -124,14 +124,17 @@ function Portfolio() {
       })
    }, [])
 
+   const interval = useRef(undefined)
+
    // handle filter
    const handleFilter = useCallback(
       type => {
+         clearInterval(interval.current)
          handleClearAnimation()
          // undefine animation delay
-         setTimeout(() => {
+         interval.current = setInterval(() => {
             handleScrollAnimation()
-         }, 0)
+         }, 300)
          switch (type) {
             case 'All':
                setData(projects)
@@ -149,11 +152,12 @@ function Portfolio() {
    // handle sort
    const handleSort = useCallback(
       (type, value) => {
+         clearInterval(interval.current)
          handleClearAnimation()
          // undefine animation delay
-         setTimeout(() => {
+         interval.current = setTimeout(() => {
             handleScrollAnimation()
-         }, 0)
+         }, 300)
          switch (type) {
             case 'sort-by-name':
                setSortByName(value)

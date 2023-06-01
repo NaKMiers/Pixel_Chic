@@ -1,6 +1,6 @@
 .relatedPosts {
    margin-bottom: 100px;
-   background: #111;
+   // background: #111;
    border-bottom: 1px solid #40424c;
 }
 
@@ -22,6 +22,11 @@
       line-height: 53px;
       color: #fff;
       text-transform: uppercase;
+
+      // mobile large
+      @media (max-width: 768px) {
+         font-size: 30px;
+      }
    }
 
    & > .relatedSlideBtn {
@@ -41,9 +46,9 @@
          color: var(--primary);
 
          &:hover {
-            border: 2px solid var(--text-secondary);
+            border: 2px solid #454751;
             color: var(--common-background);
-            background: var(--text-secondary);
+            background: #454751;
          }
       }
    }
@@ -68,15 +73,16 @@
    display: flex;
    flex-shrink: 0;
    max-width: 303px;
+   width: 303px;
    padding: 0 21px;
-   width: 25%;
    // background: blueviolet;
 
-   &:hover > .content > p {
-      color: #000;
+   &:hover > .content > .title {
+      color: #fff;
    }
 
    & > .postThumbnail {
+      flex-shrink: 0;
       width: 72px;
       height: 72px;
       margin-right: 14px;
@@ -112,7 +118,7 @@
       }
 
       & > div {
-         background: #fff;
+         // background: #fff;
 
          display: flex;
          justify-content: flex-end;
@@ -123,7 +129,7 @@
          & > span {
             font-size: 13.6px;
             font-family: 'Source Sans Pro', sans-serif;
-            color: #bebebe;
+            color: var(--text-secondary);
             margin-right: auto;
          }
 
@@ -137,7 +143,11 @@
             }
 
             &:nth-of-type(1) {
-               color: #bebebe;
+               color: var(--text-secondary);
+            }
+
+            &:nth-of-type(2) {
+               color: #f44336;
             }
          }
       }

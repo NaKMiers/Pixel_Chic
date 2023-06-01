@@ -28,6 +28,11 @@
    letter-spacing: 0.04em;
    margin: -9px 0 70px;
    // background: #000;
+
+   // tablet
+   @media (max-width: 980px) {
+      margin: 0 0 70px;
+   }
 }
 
 .signature {
