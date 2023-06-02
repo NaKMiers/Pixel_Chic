@@ -4,8 +4,17 @@ import React, { memo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Slider from '../Slider'
 import styles from './style.module.scss'
+import ProjectContent from '../ProjectContent'
+import QuickFinder from '../QuickFinder'
+import MoreInfo from '../MoreInfo'
+import facebook from '../../assets/imgs/facebook.png'
+import twitter from '../../assets/imgs/twitter.png'
+import pinterest from '../../assets/imgs/pinterest.png'
+import tumblr from '../../assets/imgs/tumblr.png'
+import linkedin from '../../assets/imgs/linkedin.png'
+import reddit from '../../assets/imgs/reddit.png'
 
-function ProjectContent() {
+function Project() {
    const navigate = useNavigate()
 
    return (
@@ -42,12 +51,63 @@ function ProjectContent() {
                   </button>
                </div>
             </div>
-
             {/* Slider */}
             <Slider />
+
+            {/* Project Content */}
+            <ProjectContent />
+
+            {/* Quick Finder */}
+            <QuickFinder />
+
+            {/* More Information */}
+            <MoreInfo />
+
+            {/* Socials */}
+            <div className={styles.socials}>
+               <div className={styles.socialWrap}>
+                  <a href='/' target='_blank' rel='noreferrer' className={styles.socialItem}>
+                     <img src={facebook} alt='social' />
+                  </a>
+                  <a href='/' target='_blank' rel='noreferrer' className={styles.socialItem}>
+                     <img src={twitter} alt='social' />
+                  </a>
+                  <a href='/' target='_blank' rel='noreferrer' className={styles.socialItem}>
+                     <img src={pinterest} alt='social' />
+                  </a>
+                  <a href='/' target='_blank' rel='noreferrer' className={styles.socialItem}>
+                     <img src={tumblr} alt='social' />
+                  </a>
+                  <a href='/' target='_blank' rel='noreferrer' className={styles.socialItem}>
+                     <img src={linkedin} alt='social' />
+                  </a>
+                  <a href='/' target='_blank' rel='noreferrer' className={styles.socialItem}>
+                     <img src={reddit} alt='social' />
+                  </a>
+               </div>
+            </div>
+
+            <div className={styles.divider} />
+
+            {/* button */}
+            <div className={styles.pageBtnWrap}>
+               <button className={`${styles.pageBtn} ${styles.prevBtn}`}>
+                  <div className={styles.icon}>
+                     <FontAwesomeIcon icon={faChevronLeft} />
+                  </div>
+                  <span>PREV</span>
+               </button>
+
+               <button className={`${styles.pageBtn} ${styles.nextBtn}`}>
+                  <span>NEXT</span>
+                  <div className={styles.icon}>
+                     <FontAwesomeIcon icon={faChevronRight} />
+                  </div>
+               </button>
+            </div>
          </div>
       </section>
    )
 }
 
-export default memo(ProjectContent)
+export default memo(Project)

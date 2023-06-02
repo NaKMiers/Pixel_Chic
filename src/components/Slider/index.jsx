@@ -85,7 +85,7 @@ function Slider() {
    )
 
    return (
-      <div className={styles.sliderWrap} style={{ padding: '0 21px' }}>
+      <div className={styles.sliderWrap}>
          <div className={styles.slider}>
             <button className={`${styles.slideBtn} ${styles.prevBtn}`} onClick={prevSlide}>
                <FontAwesomeIcon icon={faChevronLeft} />

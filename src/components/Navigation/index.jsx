@@ -1,7 +1,7 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { memo, useRef, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import facebook from '../../assets/imgs/facebook.png'
 import instagram from '../../assets/imgs/instagram.png'
 import linkedin from '../../assets/imgs/linkedin.png'
@@ -56,9 +56,9 @@ function Navigation() {
             </button>
 
             <header className={styles.navBody}>
-               <div className={styles.sidebarLogo}>
+               <Link to='/' className={styles.sidebarLogo}>
                   <img src={logo} alt='logo' />
-               </div>
+               </Link>
 
                <nav className={styles.sidebarNav}>
                   <NavLink
@@ -169,9 +169,9 @@ function Navigation() {
 
          {/* Header */}
          <header className={styles.header} onClick={handleClickOutside}>
-            <div className={styles.headerLogo}>
+            <Link to='/' className={styles.headerLogo}>
                <img src={logo} alt='logo' />
-            </div>
+            </Link>
 
             <div className={`${styles.headerBtnWrap}`}>
                <button

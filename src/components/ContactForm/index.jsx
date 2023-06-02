@@ -56,17 +56,17 @@ function ContactForm() {
 
             <form className={styles.form} ref={formRef}>
                <div className={styles.inputWrap}>
-                  <input type='text' name='name' placeholder='Name*' />
+                  <input type='text' name='name' placeholder='Name*' required />
                </div>
                <div className={styles.inputWrap}>
-                  <input type='mail' name='email' placeholder='Email*' />
+                  <input type='email' name='email' placeholder='Email*' required />
                </div>
                <div className={styles.inputWrap}>
-                  <input type='url' name='website' placeholder='Website*' />
+                  <input type='url' name='website' placeholder='Website*' required />
                </div>
 
                <div className={styles.textareaWrap}>
-                  <textarea name='message' cols='30' rows='10' placeholder='Message'></textarea>
+                  <textarea name='message' cols='30' rows='10' placeholder='Message' required></textarea>
                </div>
 
                <button className={styles.submitBtn}>Submit message</button>

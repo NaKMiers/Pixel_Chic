@@ -14,6 +14,7 @@
    width: calc(100% / 3);
    text-align: center;
    padding: 80px 21px;
+   opacity: 0; // for appear
 
    // mobile large
    @media (max-width: 768px) {

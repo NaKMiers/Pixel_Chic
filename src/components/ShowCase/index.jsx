@@ -69,7 +69,7 @@ function ShowCase() {
 
             if (top < window.innerHeight && bottom > 0) {
                delay += 0.15
-               e.style.animation = `appear 0.8s ease-in-out ${delay}s forwards`
+               e.style.animation = `zoomOut 0.6s ease-in-out ${delay}s forwards`
                e.classList.add(styles.appeard)
             }
          })
