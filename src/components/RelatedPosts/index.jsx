@@ -6,17 +6,22 @@ import RelatedPostItem from './RelatedPostItem.jsx'
 import styles from './style.module.scss'
 
 function RelatedPosts() {
-   const relatedPosts = useSelector(state => state.blogs.relatedPosts)
+   const { posts, relatedPosts } = useSelector(state => state.blogs)
+   let initialData = posts.filter(post => relatedPosts.includes(post.id))
+   initialData.sort((a, b) => {
+      return a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0
+   })
 
    const [slide, setSlide] = useState(1)
    const [isSliding, setSliding] = useState(false)
    const [slideAmount, setSlideAmount] = useState(4)
-   const [data, setData] = useState(relatedPosts.slice(0, 4))
+   const [data, setData] = useState(initialData.slice(0, 4))
 
    const relatedPostsRef = useRef(null)
    const relatedTitleRef = useRef(null)
    const slideTrackRef = useRef(null)
 
+   // handle resize
    const handleResize = useCallback(() => {
       const width = relatedPostsRef.current.clientWidth
 
@@ -48,6 +53,7 @@ function RelatedPosts() {
       }
    }, [handleResize])
 
+   // next slide
    const nextSlide = useCallback(() => {
       if (!isSliding) {
          setSliding(true)
@@ -72,6 +78,7 @@ function RelatedPosts() {
       }
    }, [slide, isSliding, data, slideAmount, relatedPosts])
 
+   // prev slide
    const prevSlide = useCallback(() => {
       if (!isSliding) {
          setSliding(true)
@@ -100,6 +107,7 @@ function RelatedPosts() {
       }
    }, [slide, isSliding, data, slideAmount, relatedPosts])
 
+   // appear on scroll
    const handleScrollAnimation = useCallback(() => {
       const topElements = [...relatedTitleRef.current.children]
       const postElements = [...slideTrackRef.current.children]
@@ -145,7 +153,6 @@ function RelatedPosts() {
       }
    }, [])
 
-   // appear on scroll
    useEffect(() => {
       handleScrollAnimation()
       window.addEventListener('scroll', handleScrollAnimation)
@@ -156,7 +163,7 @@ function RelatedPosts() {
    }, [handleScrollAnimation])
 
    return (
-      <div className={styles.relatedPosts} ref={relatedPostsRef}>
+      <div className={styles.RelatedPosts} ref={relatedPostsRef}>
          <div className={styles.relatedTitle} ref={relatedTitleRef}>
             <div className={styles.icon}>
                <FontAwesomeIcon icon={faCopy} />

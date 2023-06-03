@@ -29,7 +29,7 @@ function TopIntroduce() {
       })
 
       if (countAppeared === elements.length) {
-         console.log('removed---TopIntroduce')
+         // console.log('removed---TopIntroduce')
          window.removeEventListener('scroll', handleScrollAnimation)
       }
    }, [])

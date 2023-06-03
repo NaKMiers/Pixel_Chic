@@ -22,6 +22,15 @@ function Project() {
          <div className={`${styles.container} container`}>
             {/* Meta & Title */}
             <div className={styles.postMeta}>
+               <div className={styles.right}>
+                  <button className={`${styles.icon} ${styles.navIcon}`} onClick={() => navigate(-1)}>
+                     <FontAwesomeIcon icon={faChevronLeft} />
+                  </button>
+                  <button className={`${styles.icon} ${styles.navIcon}`} onClick={() => navigate(+1)}>
+                     <FontAwesomeIcon icon={faChevronRight} />
+                  </button>
+               </div>
+
                <div className={styles.left}>
                   <div className={`${styles.icon} ${styles.icon1}`}>
                      <FontAwesomeIcon icon={faCalendarAlt} />
@@ -40,15 +49,6 @@ function Project() {
                      <FontAwesomeIcon icon={faHeart} />
                      <span>9</span>
                   </div>
-               </div>
-
-               <div className={styles.right}>
-                  <button className={`${styles.icon} ${styles.navIcon}`} onClick={() => navigate(-1)}>
-                     <FontAwesomeIcon icon={faChevronLeft} />
-                  </button>
-                  <button className={`${styles.icon} ${styles.navIcon}`} onClick={() => navigate(+1)}>
-                     <FontAwesomeIcon icon={faChevronRight} />
-                  </button>
                </div>
             </div>
             {/* Slider */}

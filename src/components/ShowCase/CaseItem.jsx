@@ -21,7 +21,6 @@ function CaseItem({ data }) {
 
    const handleShowSocials = useCallback(() => {
       const elements = [...socialsRef.current.children]
-      console.log('elements: ', elements)
 
       elements.forEach(e => {
          e.classList.remove(styles.hide)
@@ -97,6 +96,8 @@ function CaseItem({ data }) {
                <div className={styles.socials} ref={socialsRef}>
                   <a
                      href='https://www.facebook.com/'
+                     target='_blank'
+                     rel='noreferrer'
                      className={styles.socialLink}
                      onClick={e => e.stopPropagation()}
                   >
@@ -104,6 +105,8 @@ function CaseItem({ data }) {
                   </a>
                   <a
                      href='https://twitter.com/'
+                     target='_blank'
+                     rel='noreferrer'
                      className={styles.socialLink}
                      onClick={e => e.stopPropagation()}
                   >
@@ -111,6 +114,8 @@ function CaseItem({ data }) {
                   </a>
                   <a
                      href='https://www.pinterest.com/'
+                     target='_blank'
+                     rel='noreferrer'
                      className={styles.socialLink}
                      onClick={e => e.stopPropagation()}
                   >
@@ -118,6 +123,8 @@ function CaseItem({ data }) {
                   </a>
                   <a
                      href='https://www.tumblr.com/'
+                     target='_blank'
+                     rel='noreferrer'
                      className={styles.socialLink}
                      onClick={e => e.stopPropagation()}
                   >
@@ -125,6 +132,8 @@ function CaseItem({ data }) {
                   </a>
                   <a
                      href='https://www.linkedin.com/'
+                     target='_blank'
+                     rel='noreferrer'
                      className={styles.socialLink}
                      onClick={e => e.stopPropagation()}
                   >
@@ -132,6 +141,8 @@ function CaseItem({ data }) {
                   </a>
                   <a
                      href='https://www.reddit.com/'
+                     target='_blank'
+                     rel='noreferrer'
                      className={styles.socialLink}
                      onClick={e => e.stopPropagation()}
                   >

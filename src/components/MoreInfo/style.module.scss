@@ -48,7 +48,7 @@
 
          & > .featureItem {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 8px;
 
             &:not(:last-child) {
@@ -59,6 +59,7 @@
                display: flex;
                align-items: center;
                color: var(--primary);
+               margin-top: 5.5px;
             }
 
             & > .paragraph {
@@ -146,7 +147,7 @@
          height: 100%;
          width: 0;
          background: var(--primary);
-         transition: 0.8s ease-in-out 0.5s;
+         transition: 1s ease-in-out 0.5s;
       }
    }
 }
@@ -210,6 +211,7 @@
       font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
+      color: #000;
       background: #7ddeb5;
       transition: var(--standard-duration) ease-in-out;
 

@@ -1,7 +1,7 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { memo, useRef, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import React, { memo, useCallback, useRef, useState } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
 import facebook from '../../assets/imgs/facebook.png'
 import instagram from '../../assets/imgs/instagram.png'
 import linkedin from '../../assets/imgs/linkedin.png'
@@ -12,36 +12,43 @@ import youtube from '../../assets/imgs/youtube.png'
 import styles from './style.module.scss'
 
 function Navigation() {
+   const navigate = useNavigate()
    const [openSidebar, setOpenSidebar] = useState(false)
    const [openHeader, setOpenHeader] = useState(false)
 
    const headerNavRef = useRef(null)
 
-   const handleClickOutside = e => {
-      if (headerNavRef.current && !headerNavRef.current.contains(e.target)) {
-         // handleOpenNavHeader(false)
-      }
-   }
+   const handleOpenNavHeader = useCallback(
+      value => {
+         if (value && !openHeader) {
+            // console.log('open header')
+            setOpenHeader(true)
+            headerNavRef.current.style.display = 'flex'
+            setTimeout(() => {
+               headerNavRef.current.classList.add(styles.open)
+            }, 0)
+         }
+         if (!value && openHeader) {
+            // console.log('close header')
+            setOpenHeader(false)
+            headerNavRef.current.classList.remove(styles.open)
 
-   const handleOpenNavHeader = value => {
-      if (value && !openHeader) {
-         console.log('open')
-         setOpenHeader(true)
-         headerNavRef.current.style.display = 'flex'
-         setTimeout(() => {
-            headerNavRef.current.classList.add(styles.open)
-         }, 0)
-      }
-      if (!value && openHeader) {
-         console.log('close')
-         setOpenHeader(false)
-         headerNavRef.current.classList.remove(styles.open)
+            setTimeout(() => {
+               headerNavRef.current.style.display = 'none'
+            }, 210) // navHeader duration: 0.2s(--standard-duration)
+         }
+      },
+      [openHeader]
+   )
 
-         setTimeout(() => {
-            headerNavRef.current.style.display = 'none'
-         }, 210) // navHeader duration: 0.2s(--standard-duration)
-      }
-   }
+   const handleClickOutside = useCallback(
+      e => {
+         if (headerNavRef.current && !headerNavRef.current.contains(e.target)) {
+            handleOpenNavHeader(false)
+         }
+      },
+      [handleOpenNavHeader]
+   )
 
    return (
       <div className={`${styles.Navigation} ${openSidebar ? styles.open : ''}`}>
@@ -56,9 +63,9 @@ function Navigation() {
             </button>
 
             <header className={styles.navBody}>
-               <Link to='/' className={styles.sidebarLogo}>
-                  <img src={logo} alt='logo' />
-               </Link>
+               <div className={styles.sidebarLogo}>
+                  <img src={logo} alt='logo' onClick={() => navigate('/')} />
+               </div>
 
                <nav className={styles.sidebarNav}>
                   <NavLink
@@ -169,9 +176,9 @@ function Navigation() {
 
          {/* Header */}
          <header className={styles.header} onClick={handleClickOutside}>
-            <Link to='/' className={styles.headerLogo}>
-               <img src={logo} alt='logo' />
-            </Link>
+            <div className={styles.headerLogo}>
+               <img src={logo} alt='logo' onClick={() => navigate('/')} />
+            </div>
 
             <div className={`${styles.headerBtnWrap}`}>
                <button

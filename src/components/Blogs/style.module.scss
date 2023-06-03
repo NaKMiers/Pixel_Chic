@@ -34,6 +34,7 @@
    position: relative;
    width: 100%;
    padding-top: 100%;
+   overflow: hidden;
 
    & > img {
       position: absolute;
@@ -121,6 +122,11 @@
          line-height: 24px;
          color: #fff;
          // background-color: #454751;
+
+         // mobile
+         @media (max-width: 390px) {
+            display: none;
+         }
       }
    }
 }
@@ -195,14 +201,14 @@
    }
    to {
       opacity: 0;
-      transform: translateY(-30vh);
+      transform: translateY(-15vw);
    }
 }
 
 @keyframes floatDown {
    from {
       opacity: 0;
-      transform: translateY(-30vh);
+      transform: translateY(-15vw);
    }
    to {
       opacity: 1;

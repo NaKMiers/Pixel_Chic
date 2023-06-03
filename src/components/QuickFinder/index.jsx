@@ -38,7 +38,7 @@ function QuickFinder() {
       })
 
       if (countAppeared === elements.length) {
-         console.log('removed---QuickFinder')
+         // console.log('removed---QuickFinder')
          window.removeEventListener('scroll', handleScrollAnimation)
       }
    }, [])

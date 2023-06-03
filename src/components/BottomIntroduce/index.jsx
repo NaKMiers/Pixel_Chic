@@ -30,7 +30,7 @@ function BottomIntroduce() {
       })
 
       if (countAppeared === elements.length) {
-         console.log('removed---TopIntroduce')
+         // console.log('removed---BottomIntroduce')
          window.removeEventListener('scroll', handleScrollAnimation)
       }
    }, [])

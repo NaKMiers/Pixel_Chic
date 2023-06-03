@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { memo, useEffect } from 'react'
 import styles from './style.module.scss'
 import PageHeading from '../../components/PageHeading'
 import Services from '../../components/Services'
 
 function ServicesPage() {
+   useEffect(() => {
+      window.scrollTo(0, 0)
+   }, [])
+
    return (
       <div className={styles.ServicesPage}>
          <PageHeading
@@ -15,4 +19,4 @@ function ServicesPage() {
    )
 }
 
-export default ServicesPage
+export default memo(ServicesPage)

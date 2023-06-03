@@ -1,87 +1,37 @@
-import React, { memo } from 'react'
-import styles from './style.module.scss'
+import { faCamera, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-   faBars,
-   faCamera,
-   faChevronLeft,
-   faChevronRight,
-   faComment,
-   faHeart,
-} from '@fortawesome/free-solid-svg-icons'
+import React, { memo } from 'react'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+import actions from '../../actions'
 import blogImage1 from '../../assets/imgs/blogImage1.jpg'
 import blogImage2 from '../../assets/imgs/blogImage2.jpg'
 import blogImage3 from '../../assets/imgs/blogImage3.jpg'
-import { useDispatch } from 'react-redux'
-import actions from '../../actions'
-import { Link, useNavigate } from 'react-router-dom'
 import facebook from '../../assets/imgs/facebookWhite.png'
-import twitter from '../../assets/imgs/twitterWhite.png'
-import pinterest from '../../assets/imgs/pinterestWhite.png'
 import linkedin from '../../assets/imgs/linkedinWhite.png'
+import pinterest from '../../assets/imgs/pinterestWhite.png'
 import reddit from '../../assets/imgs/redditWhite.png'
 import tumblr from '../../assets/imgs/tumblrWhite.png'
-import author from '../../assets/imgs/admin.jpg'
-import RelatedPosts from '../RelatedPosts'
+import twitter from '../../assets/imgs/twitterWhite.png'
+import MetaBar from '../MetaBar'
 import PostComment from '../PostComment'
+import RelatedPosts from '../RelatedPosts'
+import styles from './style.module.scss'
 
-function Blog() {
-   const navigate = useNavigate()
+function Blog({ data }) {
    const dispath = useDispatch()
 
    return (
       <section className={styles.Blog}>
          <div className={`${styles.container} container`}>
-            {/* meta */}
-            <div className={styles.metaWrap}>
-               <div className={styles.left}>
-                  <span>By admin</span>
-
-                  <div className={styles.sep} />
-                  <span className={styles.category} onClick={() => navigate('/categories/1')}>
-                     Creative Web Project
-                  </span>
-                  <div className={styles.sep} />
-                  <span className={styles.category} onClick={() => navigate('/categories/1')}>
-                     Showcase
-                  </span>
-                  <div className={styles.sep} />
-                  <span className={styles.category} onClick={() => navigate('/categories/1')}>
-                     Trendy Layout
-                  </span>
-                  <div className={styles.sep} />
-
-                  <span>February 25, 2019</span>
-               </div>
-
-               <div className={styles.right}>
-                  <div className={styles.icon}>
-                     <FontAwesomeIcon icon={faComment} />
-                     <span>0</span>
-                  </div>
-                  <div className={styles.sep} />
-                  <div className={styles.icon}>
-                     <FontAwesomeIcon icon={faHeart} />
-                     <span>2</span>
-                  </div>
-
-                  <button className={styles.metaBtn}>
-                     <FontAwesomeIcon icon={faChevronLeft} />
-                  </button>
-                  <button className={styles.metaBtn}>
-                     <FontAwesomeIcon icon={faBars} />
-                  </button>
-                  <button className={styles.metaBtn}>
-                     <FontAwesomeIcon icon={faChevronRight} />
-                  </button>
-               </div>
-            </div>
+            {/* Meta */}
+            <MetaBar data={data} />
 
             {/* Content */}
             <div className={styles.contentWrap}>
                <div className={styles.contentItem}>
                   <div className={styles.image}>
-                     <img src={blogImage1} alt='blog' />
+                     <img src={data.thumbnails[0]} alt='blog' />
 
                      <div className={styles.overlay}>
                         <div className={styles.iconWrap}>
@@ -121,6 +71,21 @@ function Blog() {
                </div>
 
                <div className={styles.contentItem}>
+                  <div className={styles.image}>
+                     <img src={data.thumbnails[1]} alt='blog' />
+
+                     <div className={styles.overlay}>
+                        <div className={styles.iconWrap}>
+                           <div
+                              className={styles.icon}
+                              onClick={() => dispath(actions.reviewImage(blogImage2))}
+                           >
+                              <FontAwesomeIcon icon={faCamera} />
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
                   <div className={styles.content2}>
                      <h4 className={`${styles.title} h4Title`}>LOREM IPSUM DOLOR SIT AMET</h4>
 
@@ -142,26 +107,11 @@ function Blog() {
                         eiusmod tempor incididunt ut labore et dolore.
                      </p>
                   </div>
-
-                  <div className={styles.image}>
-                     <img src={blogImage2} alt='blog' />
-
-                     <div className={styles.overlay}>
-                        <div className={styles.iconWrap}>
-                           <div
-                              className={styles.icon}
-                              onClick={() => dispath(actions.reviewImage(blogImage2))}
-                           >
-                              <FontAwesomeIcon icon={faCamera} />
-                           </div>
-                        </div>
-                     </div>
-                  </div>
                </div>
 
                <div className={styles.contentItem}>
                   <div className={styles.image}>
-                     <img src={blogImage3} alt='blog' />
+                     <img src={data.thumbnails[2]} alt='blog' />
 
                      <div className={styles.overlay}>
                         <div className={styles.iconWrap}>
@@ -204,20 +154,20 @@ function Blog() {
 
             {/* Tags */}
             <div className={styles.postTags}>
-               <Link to='/categories' className={styles.tag}>
-                  Branding
+               <Link to='/categories/1' className={styles.tag}>
+                  Creative Photography
                </Link>
-               <Link to='/categories' className={styles.tag}>
-                  Design
+               <Link to='/categories/1' className={styles.tag}>
+                  Minimalism
                </Link>
-               <Link to='/categories' className={styles.tag}>
-                  Illustration
+               <Link to='/categories/1' className={styles.tag}>
+                  Photo Project
                </Link>
-               <Link to='/categories' className={styles.tag}>
-                  Interface
+               <Link to='/categories/1' className={styles.tag}>
+                  Showcase
                </Link>
-               <Link to='/categories' className={styles.tag}>
-                  Marketing
+               <Link to='/categories/1' className={styles.tag}>
+                  Trendy Layout
                </Link>
             </div>
 
@@ -271,12 +221,12 @@ function Blog() {
             {/* Author */}
             <div className={styles.author}>
                <div className={styles.avatar}>
-                  <img src={author} alt='avatar' />
+                  <img src={data.authorAvt} alt='avatar' />
                </div>
 
                <div className={styles.detail}>
                   <p>
-                     <span>admin</span> / About Author
+                     <span>{data.author}</span> / About Author
                   </p>
                   <p>
                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
@@ -292,7 +242,7 @@ function Blog() {
                      <div>
                         <FontAwesomeIcon icon={faChevronRight} />
                      </div>
-                     <span>More posts by admin</span>
+                     <span>More posts by {data.author}</span>
                   </Link>
                </div>
             </div>

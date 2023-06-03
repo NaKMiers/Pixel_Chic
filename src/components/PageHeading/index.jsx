@@ -27,7 +27,7 @@ function PageHeading({ title, subTitle }) {
       })
 
       if (countAppeared === elements.length) {
-         console.log('removed---PageHeading')
+         // console.log('removed---PageHeading')
          window.removeEventListener('scroll', handleScrollAnimation)
       }
    }, [])

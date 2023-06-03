@@ -12,13 +12,17 @@ function ProjectItem({ data }) {
    const iconWrapRef = useRef(null)
 
    const handleMouseOver = useCallback(() => {
-      iconWrapRef.current.classList.remove(styles.hide)
-      iconWrapRef.current.classList.add(styles.show)
+      if (iconWrapRef.current) {
+         iconWrapRef.current.classList.remove(styles.hide)
+         iconWrapRef.current.classList.add(styles.show)
+      }
    }, [])
 
    const handleMouseLeave = useCallback(() => {
-      iconWrapRef.current.classList.remove(styles.show)
-      iconWrapRef.current.classList.add(styles.hide)
+      if (iconWrapRef.current) {
+         iconWrapRef.current.classList.remove(styles.show)
+         iconWrapRef.current.classList.add(styles.hide)
+      }
    }, [])
 
    return (

@@ -1,8 +1,13 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
 import styles from './style.module.scss'
 import ShowCase from '../../components/ShowCase'
 
 function HomePage() {
+   useEffect(() => {
+      console.log('scroll-top')
+      window.scrollTo(0, 0)
+   }, [])
+
    return (
       <div className={styles.HomePage}>
          <ShowCase />

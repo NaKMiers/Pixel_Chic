@@ -6,13 +6,13 @@ import styles from './style.module.scss'
 
 function RelatedPostItem({ data }) {
    return (
-      <Link to='/blogs/1' className={styles.postItem}>
+      <Link to={`/blogs/${data.id}`} className={styles.postItem}>
          <div className={styles.postThumbnail}>
-            <img src={data.thumbnail} alt='post-thumnbail' />
+            <img src={data.image} alt='post-thumnbail' />
          </div>
          <div className={styles.content}>
             <p className={styles.title}>{data.title}</p>
-            <p className={styles.desc}>{data.desc}</p>
+            <p className={styles.desc}>{data.subTitle}</p>
             <div>
                <span>{data.date}</span>
                <div>
@@ -21,7 +21,7 @@ function RelatedPostItem({ data }) {
                </div>
                <div>
                   <FontAwesomeIcon icon={faHeart} />
-                  <span>{data.id}</span>
+                  <span>{data.likes}</span>
                </div>
             </div>
          </div>

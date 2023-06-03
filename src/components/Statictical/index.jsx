@@ -54,9 +54,8 @@ function Statictical() {
             countAppeared++
          }
       })
-      console.log(countAppeared)
       if (countAppeared === elements.length + diagramElements.length) {
-         console.log('removed---Statictical')
+         // console.log('removed---Statictical')
          window.removeEventListener('scroll', handleScrollAnimation)
       }
    }, [])

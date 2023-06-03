@@ -18,6 +18,7 @@ function Services({ data, reverse }) {
          const bottom = e.getBoundingClientRect().bottom
 
          if (top < window.innerHeight && bottom > 0 && !e.className.includes(styles.appeared)) {
+            e.style.opacity = 0
             e.classList.add('appear')
             e.classList.add(styles.appeared)
          }
@@ -49,7 +50,7 @@ function Services({ data, reverse }) {
          }
       })
       if (countAppeared === elements.length + subImagesElements.length) {
-         console.log('removed---ServiceItem')
+         // console.log('removed---ServiceItem')
          window.removeEventListener('scroll', handleScrollAnimation)
       }
    }, [])

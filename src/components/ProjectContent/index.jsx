@@ -37,7 +37,7 @@ function ProjectContent() {
       })
 
       if (countAppeared === elements.length) {
-         console.log('removed---ProjectContent')
+         // console.log('removed---ProjectContent')
          window.removeEventListener('scroll', handleScrollAnimation)
       }
    }, [])

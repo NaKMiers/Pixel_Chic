@@ -29,7 +29,7 @@ function App() {
             <Route path='/blogs' exact element={<BlogsPage />} />
             <Route path='/blogs/:id' exact={false} element={<BlogPage />} />
             <Route path='/hire-me' exact element={<HireMePage />} />
-            <Route path='/categories' exact element={<CategoriesPage />} />
+            <Route path='/categories/:id' exact element={<CategoriesPage />} />
             <Route path='*' exact={false} element={<NotFoundPage />} />
          </Routes>
 

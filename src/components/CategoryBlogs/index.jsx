@@ -1,10 +1,16 @@
 import React, { memo, useCallback, useEffect, useRef } from 'react'
-import BlogItem from './BlogItem'
-import styles from './style.module.scss'
 import { useSelector } from 'react-redux'
+import styles from './style.module.scss'
 
-function Blogs() {
-   const blogs = useSelector(state => state.blogs.posts)
+import CategoryBlogItem from './CategoryBlogItem'
+
+function CategoryBlogs() {
+   const { posts, categoryPosts } = useSelector(state => state.blogs)
+   let data = posts.filter(post => categoryPosts.includes(post.id))
+   data.sort((a, b) => {
+      return a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0
+   })
+
    const containerRef = useRef(null)
 
    // show on scroll
@@ -16,6 +22,7 @@ function Blogs() {
          const bottom = e.getBoundingClientRect().bottom
 
          if (top < window.innerHeight && bottom > 0 && !e.className.includes(styles.appeared)) {
+            e.style.opacity = 0
             e.classList.add('appear')
             e.classList.add(styles.appeared)
          }
@@ -30,7 +37,7 @@ function Blogs() {
       })
 
       if (countAppeared === elements.length) {
-         // console.log('removed---Blogs')
+         // console.log('removed---CategoryBlogs')
          window.removeEventListener('scroll', handleScrollAnimation)
       }
    }, [])
@@ -45,14 +52,14 @@ function Blogs() {
    }, [handleScrollAnimation])
 
    return (
-      <section className={styles.Blogs}>
+      <section className={styles.CategoryBlogs}>
          <div className={`${styles.container} container`} ref={containerRef}>
-            {blogs.map(blog => (
-               <BlogItem data={blog} key={blog.id} />
+            {data.map(post => (
+               <CategoryBlogItem data={post} key={post.id} />
             ))}
          </div>
       </section>
    )
 }
 
-export default memo(Blogs)
+export default memo(CategoryBlogs)

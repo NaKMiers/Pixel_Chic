@@ -30,7 +30,7 @@ function ContactInfo() {
       })
 
       if (countAppeared === elements.length) {
-         console.log('removed---ContactInfo')
+         // console.log('removed---ContactInfo')
          window.removeEventListener('scroll', handleScrollAnimation)
       }
    }, [])

@@ -45,10 +45,10 @@ function MoreInfo() {
          const top = e.getBoundingClientRect().top
          const bottom = e.getBoundingClientRect().bottom
 
-         if (top < window.innerHeight && bottom > 0 && !e.className.includes(styles.appeared)) {
-            delay += 0.15
+         if (top < window.innerHeight && bottom > 0) {
+            delay += 0.1
             e.style.opacity = 0
-            e.style.animation = `flyLeft 0.2s ease-in ${delay}s forwards`
+            e.style.animation = `flyLeft var(--standard-duration) ease-in ${delay}s forwards`
             e.classList.add(styles.appeared)
          }
       })
@@ -79,7 +79,7 @@ function MoreInfo() {
                   if (startValue === endValue) {
                      clearInterval(interval)
                   }
-               }, 15)
+               }, 1000 / dataValue)
             })
          }
       }
@@ -100,7 +100,7 @@ function MoreInfo() {
          countAppeared++
       }
       if (countAppeared === elements.length + featureElements.length + 1) {
-         console.log('removed---MoreInfo')
+         // console.log('removed---MoreInfo')
          window.removeEventListener('scroll', handleScrollAnimation)
       }
    }, [])

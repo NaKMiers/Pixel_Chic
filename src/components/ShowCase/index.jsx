@@ -28,16 +28,12 @@ function ShowCase() {
       const width = window.innerWidth
 
       if (width > 1200 && caseLength !== 4) {
-         console.log(4)
          setCaseLength(4)
       } else if (width <= 1200 && width > 768 && caseLength !== 3) {
-         console.log(3)
          setCaseLength(3)
       } else if (width <= 768 && width > 548 && caseLength !== 2) {
-         console.log(2)
          setCaseLength(2)
       } else if (width <= 548 && caseLength !== 1) {
-         console.log(1)
          setCaseLength(1)
       }
    }, [caseLength])
@@ -84,7 +80,7 @@ function ShowCase() {
       })
 
       if (countAppeared === elements.length) {
-         console.log('removed---ShowCase')
+         // console.log('removed---ShowCase')
          window.removeEventListener('scroll', handleScrollAnimation)
       }
    }, [caseLength])

@@ -20,20 +20,19 @@ function Portfolio() {
    const [sortByName, setSortByName] = useState(false)
    const [sortAsc, setSortAsc] = useState(false)
 
+   const filterWrapRef = useRef(null)
    const projectWrapRef = useRef(null)
    const [projectLength, setProjectLength] = useState(3)
+   const interval = useRef(undefined)
 
    // set the amount of item per row on mount
    const setInitialCaseLength = useCallback(() => {
       const width = window.innerWidth
       if (width > 768) {
-         console.log(3)
          setProjectLength(3)
       } else if (width <= 768 && width > 548) {
-         console.log(2)
          setProjectLength(2)
       } else if (width <= 548) {
-         console.log(1)
          setProjectLength(1)
       }
    }, [])
@@ -43,13 +42,10 @@ function Portfolio() {
       const width = window.innerWidth
 
       if (width > 768 && projectLength !== 3) {
-         console.log(3)
          setProjectLength(3)
       } else if (width <= 768 && width > 548 && projectLength !== 2) {
-         console.log(2)
          setProjectLength(2)
       } else if (width <= 548 && projectLength !== 1) {
-         console.log(1)
          setProjectLength(1)
       }
    }, [projectLength])
@@ -65,42 +61,43 @@ function Portfolio() {
 
    // show on scroll
    const handleScrollAnimation = useCallback(() => {
-      console.log('handleScrollAnimation')
-      const elements = [...projectWrapRef.current.children]
-      const result = []
+      // console.log('handleScrollAnimation')
+      if (projectWrapRef.current) {
+         const elements = [...projectWrapRef.current.children, filterWrapRef.current]
+         const result = []
 
-      for (let i = 0; i < elements.length; i += projectLength) {
-         const chunk = elements.slice(i, i + projectLength)
-         result.push(chunk)
-      }
+         for (let i = 0; i < elements.length; i += projectLength) {
+            const chunk = elements.slice(i, i + projectLength)
+            result.push(chunk)
+         }
 
-      result.forEach(chunk => {
-         let delay = 0.2
-         chunk.forEach(e => {
-            const top = e.getBoundingClientRect().top
-            const bottom = e.getBoundingClientRect().bottom
-            e.style.opacity = 0
+         result.forEach(chunk => {
+            let delay = 0.2
+            chunk.forEach(e => {
+               const top = e.getBoundingClientRect().top
+               const bottom = e.getBoundingClientRect().bottom
+               e.style.opacity = 0
 
-            if (top < window.innerHeight && bottom > 0 && !e.className.includes(styles.appeared)) {
-               delay += 0.1
-               e.style.transform = `perspective(800px) rotateX(-75deg)`
-               e.style.animation = `flipIn 0.6s ease-in-out ${delay}s forwards`
-               e.classList.add(styles.appeared)
+               if (top < window.innerHeight && bottom > 0 && !e.className.includes(styles.appeared)) {
+                  delay += 0.1
+                  e.style.transform = `perspective(800px) rotateX(-75deg)`
+                  e.style.animation = `flipIn 0.6s ease-in-out ${delay}s forwards`
+                  e.classList.add(styles.appeared)
+               }
+            })
+         })
+
+         // remove event listener after all showed
+         let countAppeared = 0
+         elements.forEach(e => {
+            if (e.className.includes(styles.appeared)) {
+               countAppeared++
             }
          })
-      })
-
-      // remove event listener after all showed
-      let countAppeared = 0
-      elements.forEach(e => {
-         if (e.className.includes(styles.appeared)) {
-            countAppeared++
+         if (countAppeared === elements.length) {
+            // console.log('removed---Portfolio')
+            window.removeEventListener('scroll', handleScrollAnimation)
          }
-      })
-
-      if (countAppeared === elements.length) {
-         console.log('removed---Portfolio')
-         window.removeEventListener('scroll', handleScrollAnimation)
       }
    }, [projectLength])
 
@@ -115,16 +112,16 @@ function Portfolio() {
 
    // clear animation appear
    const handleClearAnimation = useCallback(() => {
-      const elements = [...projectWrapRef.current.children]
-      elements.forEach(e => {
-         e.classList.remove(styles.appeared)
-         e.style.animation = 'none'
-         e.style.transform = 'none'
-         e.opacity = 0
-      })
+      if (projectWrapRef.current) {
+         const elements = [...projectWrapRef.current.children]
+         elements.forEach(e => {
+            e.classList.remove(styles.appeared)
+            e.style.animation = 'none'
+            e.style.transform = 'none'
+            e.opacity = 0
+         })
+      }
    }, [])
-
-   const interval = useRef(undefined)
 
    // handle filter
    const handleFilter = useCallback(
@@ -195,7 +192,7 @@ function Portfolio() {
    return (
       <section className={styles.Portfolio}>
          <div className={`${styles.container} container`}>
-            <div className={styles.filterWrap}>
+            <div className={styles.filterWrap} ref={filterWrapRef}>
                <div className={styles.filterMenuBtn} onClick={() => setOpenFilter(!openFilter)}>
                   <FontAwesomeIcon icon={faEllipsis} />
                </div>

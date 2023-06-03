@@ -1,6 +1,6 @@
 import { faCamera, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 import styles from './style.module.scss'
 
 import slide1 from '../../assets/imgs/slide1.jpg'
@@ -144,4 +144,4 @@ function Slider() {
    )
 }
 
-export default Slider
+export default memo(Slider)

@@ -56,7 +56,6 @@ function ImageReview() {
       if (imageReview) {
          if (autoPlayImages.length > 0) {
             const index = autoPlayImages.findIndex(image => image === imageReview)
-            console.log(123123)
             setCurNumber(index + 1)
          }
          handleOpenImageReview()

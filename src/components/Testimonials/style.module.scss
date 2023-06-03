@@ -19,7 +19,7 @@
 
    // mobile
    @media (max-width: 768px) {
-      padding: 73px 0 0;
+      padding: 36px 0 0;
    }
 }
 
@@ -52,6 +52,13 @@
 .sliderSvg {
    height: 57px;
    margin-left: 105px;
+
+   // mobile large
+   @media (max-width: 768px) {
+      display: flex;
+      justify-content: center;
+      margin: 0;
+   }
 }
 
 .slideTrack {

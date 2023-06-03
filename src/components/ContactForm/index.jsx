@@ -29,7 +29,7 @@ function ContactForm() {
       })
 
       if (countAppeared === elements.length) {
-         console.log('removed---TopIntroduce')
+         // console.log('removed---ContactForm')
          window.removeEventListener('scroll', handleScrollAnimation)
       }
    }, [])

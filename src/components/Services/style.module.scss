@@ -11,6 +11,7 @@
 .serviceItem {
    display: flex;
    flex-wrap: wrap;
+   // opacity: 0; // for appear
 
    &.reverse {
       flex-direction: row-reverse;
@@ -21,6 +22,7 @@
    width: 50%;
    padding: 60px 60px 40px;
    background: var(--secondary);
+   opacity: 0; // for appear
 
    // tablet
    @media (max-width: 980px) {
@@ -90,6 +92,7 @@
 .mainImage {
    width: 50%;
    overflow: hidden;
+   opacity: 0; // for appear
 
    // tablet
    @media (max-width: 980px) {
