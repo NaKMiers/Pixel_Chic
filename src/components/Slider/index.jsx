@@ -84,6 +84,17 @@ function Slider() {
       [dispatch]
    )
 
+   // slides autoplay
+   useEffect(() => {
+      const interval = setInterval(() => {
+         nextSlide()
+      }, 5000)
+
+      return () => {
+         clearInterval(interval)
+      }
+   }, [nextSlide])
+
    return (
       <div className={styles.sliderWrap}>
          <div className={styles.slider}>
