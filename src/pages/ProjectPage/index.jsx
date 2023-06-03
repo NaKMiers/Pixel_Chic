@@ -12,7 +12,7 @@ function ProjectPage() {
 
    useEffect(() => {
       window.scrollTo(0, 0)
-   }, [])
+   }, [id])
 
    return (
       <div className={styles.ProjectPage}>

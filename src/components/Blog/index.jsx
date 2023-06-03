@@ -154,19 +154,19 @@ function Blog({ data }) {
 
             {/* Tags */}
             <div className={styles.postTags}>
-               <Link to='/categories/1' className={styles.tag}>
+               <Link to='/categories' className={styles.tag}>
                   Creative Photography
                </Link>
-               <Link to='/categories/1' className={styles.tag}>
+               <Link to='/categories' className={styles.tag}>
                   Minimalism
                </Link>
-               <Link to='/categories/1' className={styles.tag}>
+               <Link to='/categories' className={styles.tag}>
                   Photo Project
                </Link>
-               <Link to='/categories/1' className={styles.tag}>
+               <Link to='/categories' className={styles.tag}>
                   Showcase
                </Link>
-               <Link to='/categories/1' className={styles.tag}>
+               <Link to='/categories' className={styles.tag}>
                   Trendy Layout
                </Link>
             </div>

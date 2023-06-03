@@ -13,8 +13,16 @@ import ProjectContent from '../ProjectContent'
 import QuickFinder from '../QuickFinder'
 import Slider from '../Slider'
 import styles from './style.module.scss'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 function Project({ data }) {
+   const navigate = useNavigate()
+   const projects = useSelector(state => state.projects.projects)
+   const curIndex = projects.findIndex(state => state.id === data.id)
+   const nextLink = '/portfolio/' + projects[curIndex === projects.length - 1 ? 0 : curIndex + 1].id
+   const prevLink = '/portfolio/' + projects[curIndex === 0 ? projects.length - 1 : curIndex - 1].id
+
    return (
       <section className={styles.ProjectContent}>
          <div className={`${styles.container} container`}>
@@ -61,14 +69,20 @@ function Project({ data }) {
 
             {/* button */}
             <div className={styles.pageBtnWrap}>
-               <button className={`${styles.pageBtn} ${styles.prevBtn}`}>
+               <button
+                  className={`${styles.pageBtn} ${styles.prevBtn}`}
+                  onClick={() => navigate(prevLink)}
+               >
                   <div className={styles.icon}>
                      <FontAwesomeIcon icon={faChevronLeft} />
                   </div>
                   <span>PREV</span>
                </button>
 
-               <button className={`${styles.pageBtn} ${styles.nextBtn}`}>
+               <button
+                  className={`${styles.pageBtn} ${styles.nextBtn}`}
+                  onClick={() => navigate(nextLink)}
+               >
                   <span>NEXT</span>
                   <div className={styles.icon}>
                      <FontAwesomeIcon icon={faChevronRight} />

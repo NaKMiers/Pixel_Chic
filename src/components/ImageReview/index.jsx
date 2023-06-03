@@ -1,7 +1,14 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 import styles from './style.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faArrowRight, faPlay, faSearch, faX } from '@fortawesome/free-solid-svg-icons'
+import {
+   faArrowLeft,
+   faArrowRight,
+   faPause,
+   faPlay,
+   faSearch,
+   faX,
+} from '@fortawesome/free-solid-svg-icons'
 import { useSelector, useDispatch } from 'react-redux'
 import actions from '../../actions'
 
@@ -152,7 +159,7 @@ function ImageReview() {
                      dispatch(actions.autoPlay())
                   }}
                >
-                  <FontAwesomeIcon icon={faPlay} />
+                  <FontAwesomeIcon icon={autoPlay ? faPause : faPlay} />
                </button>
             )}
 

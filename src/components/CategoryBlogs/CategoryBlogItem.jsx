@@ -42,7 +42,7 @@ function CategoryBlogs({ data }) {
          {/* Meta */}
          <MetaBar data={data} metaType='2' />
 
-         <h3 className={styles.title} onClick={() => navigate('/blogs/1')}>
+         <h3 className={styles.title} onClick={() => navigate(`/blogs/${data.id}`)}>
             <span>{data.date}</span>: <span>{data.title}</span>
          </h3>
 

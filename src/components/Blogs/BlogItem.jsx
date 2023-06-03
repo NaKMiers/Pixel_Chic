@@ -28,7 +28,7 @@ function BlogItem({ data }) {
          className={styles.blogItem}
          onMouseOver={handleMouseOver}
          onMouseLeave={handleMouseLeave}
-         onClick={() => navigate('/blogs/1')}
+         onClick={() => navigate(`/blogs/${data.id}`)}
       >
          <div className={styles.thumbnail}>
             <img src={data.image} alt='blog' />
@@ -67,7 +67,7 @@ function BlogItem({ data }) {
                      <span
                         onClick={e => {
                            e.stopPropagation()
-                           navigate('/categories/1')
+                           navigate('/categories')
                         }}
                      >
                         {ctg}
