@@ -52,14 +52,14 @@ function ContactInfo() {
                   <img src={location} alt='icon' />
                </div>
 
-               <h5 className={`${styles.title} h5Title`}>ADRESS</h5>
+               <h5 className={`${styles.title} h5Title`}>ADDRESS</h5>
 
                <p className={`${styles.paragraph} paragraph`}>
-                  <span>908 New Hampshire Avenue</span>
+                  <span>49 Trinh Dinh Trong Street</span>
                   <br />
-                  <span>#100, Washington, DC</span>
+                  <span>Phu Trung, Tan Phu District</span>
                   <br />
-                  <span>20037, United States</span>
+                  <span>Ho Chi Minh City, Vietnam</span>
                </p>
             </div>
 
@@ -71,11 +71,11 @@ function ContactInfo() {
                <h5 className={`${styles.title} h5Title`}>PHONE</h5>
 
                <p className={`${styles.paragraph} paragraph`}>
-                  <span>Phone: +1 916-875-2235</span>
+                  <span>Phone: +84 899 320 427</span>
                   <br />
-                  <span>Mobile: +1 916-875-2235</span>
+                  <span>Mobile: +84 899 320 427</span>
                   <br />
-                  <span>Fax: +1 916-875-2235</span>
+                  <span>Fax: +89 899 320 427</span>
                </p>
             </div>
 
@@ -87,11 +87,11 @@ function ContactInfo() {
                <h5 className={`${styles.title} h5Title`}>E-MAIL</h5>
 
                <p className={`${styles.paragraph} paragraph`}>
-                  <span>lawyers@domain.ltd</span>
+                  <span>diwas118151@gmail.com</span>
                   <br />
-                  <span>info@domain.ltd</span>
+                  <span>https://iamnak.info</span>
                   <br />
-                  <span>thegem@domain.ltd</span>
+                  <span>contact@iamnak.info</span>
                </p>
             </div>
          </div>
