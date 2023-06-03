@@ -1,56 +1,26 @@
-import { faCalendarAlt, faChevronLeft, faChevronRight, faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { memo } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Slider from '../Slider'
-import styles from './style.module.scss'
+import facebook from '../../assets/imgs/facebook.png'
+import linkedin from '../../assets/imgs/linkedin.png'
+import pinterest from '../../assets/imgs/pinterest.png'
+import reddit from '../../assets/imgs/reddit.png'
+import tumblr from '../../assets/imgs/tumblr.png'
+import twitter from '../../assets/imgs/twitter.png'
+import MetaBar from '../../components/MetaBar'
+import MoreInfo from '../MoreInfo'
 import ProjectContent from '../ProjectContent'
 import QuickFinder from '../QuickFinder'
-import MoreInfo from '../MoreInfo'
-import facebook from '../../assets/imgs/facebook.png'
-import twitter from '../../assets/imgs/twitter.png'
-import pinterest from '../../assets/imgs/pinterest.png'
-import tumblr from '../../assets/imgs/tumblr.png'
-import linkedin from '../../assets/imgs/linkedin.png'
-import reddit from '../../assets/imgs/reddit.png'
+import Slider from '../Slider'
+import styles from './style.module.scss'
 
-function Project() {
-   const navigate = useNavigate()
-
+function Project({ data }) {
    return (
       <section className={styles.ProjectContent}>
          <div className={`${styles.container} container`}>
             {/* Meta & Title */}
-            <div className={styles.postMeta}>
-               <div className={styles.right}>
-                  <button className={`${styles.icon} ${styles.navIcon}`} onClick={() => navigate(-1)}>
-                     <FontAwesomeIcon icon={faChevronLeft} />
-                  </button>
-                  <button className={`${styles.icon} ${styles.navIcon}`} onClick={() => navigate(+1)}>
-                     <FontAwesomeIcon icon={faChevronRight} />
-                  </button>
-               </div>
+            <MetaBar data={data} metaType='3' />
 
-               <div className={styles.left}>
-                  <div className={`${styles.icon} ${styles.icon1}`}>
-                     <FontAwesomeIcon icon={faCalendarAlt} />
-                  </div>
-                  <span>November 3, 2020</span>
-                  <div className={styles.sep} />
-                  <span className={styles.category} onClick={() => navigate('/categories/1')}>
-                     Creative
-                  </span>
-                  <div className={styles.sep} />
-                  <span className={styles.category} onClick={() => navigate('/categories/1')}>
-                     Fashion
-                  </span>
-                  <div className={styles.sep} />
-                  <div className={`${styles.icon} ${styles.heartIcon}`}>
-                     <FontAwesomeIcon icon={faHeart} />
-                     <span>9</span>
-                  </div>
-               </div>
-            </div>
             {/* Slider */}
             <Slider />
 

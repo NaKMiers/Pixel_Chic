@@ -4,7 +4,6 @@ import ShowCase from '../../components/ShowCase'
 
 function HomePage() {
    useEffect(() => {
-      console.log('scroll-top')
       window.scrollTo(0, 0)
    }, [])
 

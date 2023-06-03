@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
    faBars,
+   faCalendarAlt,
    faChevronLeft,
    faChevronRight,
    faComment,
@@ -14,9 +15,29 @@ import { useSelector } from 'react-redux'
 function MetaBar({ data, metaType = '1' }) {
    const navigate = useNavigate()
    const posts = useSelector(state => state.blogs.posts)
-   const curIndex = posts.findIndex(post => post.id === data.id)
-   const nextPost = posts[curIndex === posts.length - 1 ? 0 : curIndex + 1]
-   const prevPost = posts[curIndex === 0 ? posts.length - 1 : curIndex - 1]
+   const projects = useSelector(state => state.projects.projects)
+
+   let link = ''
+   let state = []
+
+   switch (metaType) {
+      case '1':
+      case '2':
+         link = '/blogs/'
+         state = posts
+         break
+      case '3':
+         link = '/portfolio/'
+         state = projects
+         break
+      default:
+         break
+   }
+
+   const curIndex = state.findIndex(state => state.id === data.id)
+   const nextLink = link + state[curIndex === state.length - 1 ? 0 : curIndex + 1].id
+   const prevLink = link + state[curIndex === 0 ? state.length - 1 : curIndex - 1].id
+
    const metaBarRef = useRef(null)
 
    // show on scroll
@@ -52,14 +73,60 @@ function MetaBar({ data, metaType = '1' }) {
    }, [metaType, handleScrollAnimation])
 
    return (
-      <div className={`${styles.MetaBar} ${metaType === '2' ? styles.type2 : ''}`} ref={metaBarRef}>
+      <div
+         className={`${styles.MetaBar} ${
+            metaType === '2' ? styles.type2 : metaType === '3' ? styles.type3 : ''
+         }`}
+         ref={metaBarRef}
+      >
+         <div className={styles.right}>
+            {metaType !== '3' && (
+               <>
+                  <div className={styles.icon}>
+                     <FontAwesomeIcon icon={faComment} />
+                     <span>{data.comments}</span>
+                  </div>
+                  <div className={styles.sep} />
+                  <div className={styles.icon}>
+                     <FontAwesomeIcon icon={faHeart} />
+                     <span>{data.likes}</span>
+                  </div>
+               </>
+            )}
+
+            {(metaType === '1' || metaType === '3') && (
+               <Link to={prevLink} className={`${styles.metaBtn} ${styles.prev}`}>
+                  <FontAwesomeIcon icon={faChevronLeft} />
+               </Link>
+            )}
+            {metaType === '1' && (
+               <Link to='/blogs' className={`${styles.metaBtn} ${styles.bars}`}>
+                  <FontAwesomeIcon icon={faBars} />
+               </Link>
+            )}
+            {(metaType === '1' || metaType === '3') && (
+               <Link to={nextLink} className={`${styles.metaBtn} ${styles.next}`}>
+                  <FontAwesomeIcon icon={faChevronRight} />
+               </Link>
+            )}
+         </div>
+
          <div className={styles.left}>
-            <span>By {data.author}</span>
+            {metaType === '3' ? (
+               <>
+                  <div className={`${styles.icon} ${styles.icon1}`}>
+                     <FontAwesomeIcon icon={faCalendarAlt} />
+                  </div>
+                  <span>November 3, 2020</span>
+               </>
+            ) : (
+               <span>By {data.author}</span>
+            )}
             <div className={styles.sep} />
 
             {data.categories.map((category, index) => (
                <Fragment key={index}>
-                  <span className={styles.category} onClick={() => navigate('/categories/1')}>
+                  <span className={styles.category} onClick={() => navigate('/categories')}>
                      {category}
                   </span>
                   {index !== data.categories.length - 1 && <div className={styles.sep} />}
@@ -72,30 +139,14 @@ function MetaBar({ data, metaType = '1' }) {
                   <span>{data.date}</span>
                </>
             )}
-         </div>
 
-         <div className={styles.right}>
-            <div className={styles.icon}>
-               <FontAwesomeIcon icon={faComment} />
-               <span>{data.comments}</span>
-            </div>
-            <div className={styles.sep} />
-            <div className={styles.icon}>
-               <FontAwesomeIcon icon={faHeart} />
-               <span>{data.likes}</span>
-            </div>
-
-            {metaType === '1' && (
+            {metaType === '3' && (
                <>
-                  <Link to={`/blogs/${prevPost.id}`} className={styles.metaBtn}>
-                     <FontAwesomeIcon icon={faChevronLeft} />
-                  </Link>
-                  <Link to='/blogs' className={styles.metaBtn}>
-                     <FontAwesomeIcon icon={faBars} />
-                  </Link>
-                  <Link to={`/blogs/${nextPost.id}`} className={styles.metaBtn}>
-                     <FontAwesomeIcon icon={faChevronRight} />
-                  </Link>
+                  <div className={styles.sep} />
+                  <div className={`${styles.icon} ${styles.heartIcon}`}>
+                     <FontAwesomeIcon icon={faHeart} />
+                     <span>9</span>
+                  </div>
                </>
             )}
          </div>

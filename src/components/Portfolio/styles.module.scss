@@ -364,6 +364,12 @@
          color: var(--primary);
          overflow: hidden;
          text-overflow: ellipsis;
+         transition: var(--standard-duration) ease-in-out;
+
+         &:hover {
+            color: #fff;
+            text-decoration: underline;
+         }
       }
 
       & > .sep {

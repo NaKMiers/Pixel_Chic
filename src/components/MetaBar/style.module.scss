@@ -2,6 +2,7 @@
    display: flex;
    justify-content: space-between;
    flex-wrap: wrap;
+   flex-direction: row-reverse;
    // align-items: flex-start;
 
    padding: 0 21px;
@@ -16,12 +17,38 @@
          background: #fff;
       }
    }
+
+   &.type3 {
+      & .sep {
+         background: #fff;
+      }
+
+      & > .right > .metaBtn {
+         color: #fff;
+      }
+   }
 }
 
 .left {
    display: flex;
    flex-wrap: wrap;
    align-items: center;
+   & > .icon {
+      font-size: 19px;
+      margin-right: 8px;
+      color: #fff;
+
+      &.heartIcon {
+         font-size: 14px;
+         color: #f44336;
+
+         & > span {
+            font-size: 16px;
+            margin-left: 8px;
+            font-family: 'Source Sans Pro', sans-serif;
+         }
+      }
+   }
 
    & > span {
       font-size: 16px;
@@ -88,10 +115,10 @@
       color: var(--text-secondary);
       transition: var(--standard-duration) ease-in-out;
 
-      &:nth-of-type(1) {
+      &.prev {
          margin-left: 12px;
       }
-      &:nth-of-type(2) {
+      &.bars {
          font-size: 17px;
       }
 

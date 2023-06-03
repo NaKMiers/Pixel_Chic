@@ -4,7 +4,7 @@ import styles from './style.module.scss'
 import { useSelector } from 'react-redux'
 
 function ShowCase() {
-   const showcase = useSelector(state => state.showcase)
+   const showcase = useSelector(state => state.projects.projects)
 
    const containerRef = useRef(null)
    const [caseLength, setCaseLength] = useState(4)

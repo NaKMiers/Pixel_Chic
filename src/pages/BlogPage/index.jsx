@@ -10,7 +10,6 @@ function BlogPage() {
    const data = useSelector(state => state.blogs.posts.find(post => post.id === +id))
 
    useEffect(() => {
-      console.log('scroll-top')
       window.scrollTo(0, 0)
    }, [])
 

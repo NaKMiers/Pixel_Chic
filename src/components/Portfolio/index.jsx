@@ -6,14 +6,14 @@ import ProjectItem from './ProjectItem'
 import styles from './styles.module.scss'
 
 function Portfolio() {
-   const projects = useSelector(state => {
-      state.projects.sort((a, b) => {
-         return a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0
-      })
-      state.projects.reverse()
-      return state.projects
+   const { projects, portfolio } = useSelector(state => state.projects)
+   let initialData = projects.filter(project => portfolio.includes(project.id))
+   initialData.sort((a, b) => {
+      return a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0
    })
-   const [data, setData] = useState(projects)
+   initialData.reverse()
+
+   const [data, setData] = useState(initialData)
 
    const [openFilter, setOpenFilter] = useState(false)
    const [filter, setFilter] = useState('All')
@@ -134,16 +134,17 @@ function Portfolio() {
          }, 300)
          switch (type) {
             case 'All':
-               setData(projects)
+               setData(initialData)
+               setFilter(type)
                break
 
             default:
-               const newData = projects.filter(project => project.categories.includes(type))
+               const newData = initialData.filter(project => project.categories.includes(type))
                setData(newData)
                setFilter(type)
          }
       },
-      [projects, handleClearAnimation, handleScrollAnimation]
+      [handleClearAnimation, handleScrollAnimation, initialData]
    )
 
    // handle sort
@@ -152,7 +153,7 @@ function Portfolio() {
          clearInterval(interval.current)
          handleClearAnimation()
          // undefine animation delay
-         interval.current = setTimeout(() => {
+         interval.current = setInterval(() => {
             handleScrollAnimation()
          }, 300)
          switch (type) {
@@ -168,7 +169,7 @@ function Portfolio() {
                   setData(newData)
                } else {
                   let newData = [...data]
-                  newData = projects.sort((a, b) => {
+                  newData.sort((a, b) => {
                      return a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0
                   })
                   setData(newData)
@@ -186,7 +187,7 @@ function Portfolio() {
                break
          }
       },
-      [data, projects, handleClearAnimation, handleScrollAnimation]
+      [data, handleClearAnimation, handleScrollAnimation]
    )
 
    return (

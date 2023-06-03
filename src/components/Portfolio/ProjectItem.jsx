@@ -30,7 +30,7 @@ function ProjectItem({ data }) {
          className={styles.projectItem}
          onMouseOver={handleMouseOver}
          onMouseLeave={handleMouseLeave}
-         onClick={() => navigate('/portfolio/1')}
+         onClick={() => navigate(`/portfolio/${data.id}`)}
       >
          <div className={styles.thumbnail}>
             <img src={data.image} alt='thumbnail' />
