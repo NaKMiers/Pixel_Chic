@@ -81,5 +81,10 @@
       text-transform: uppercase;
       color: #000;
       background: #7ddeb5;
+      transition: var(--standard-duration) ease-in-out;
+
+      &:hover {
+         background: var(--primary);
+      }
    }
 }
